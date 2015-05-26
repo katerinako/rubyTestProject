@@ -1,0 +1,3 @@
+class PlaceOfWork < WorkExperience
+
+end

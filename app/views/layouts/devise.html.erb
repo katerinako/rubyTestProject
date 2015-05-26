@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+  <%= stylesheet_link_tag "scaffold", 
+                          "login",
+                          "styles", 
+                          "aristo/jquery-ui-1.8.5.custom",
+                          "additional" %>
+  </head>
+  <body id="article" class="login-page" >
+    <div id="wrapper">
+      <ul id="language">
+        <li><%= link_to_locale(:fr) %></li>
+        <li><%= link_to_locale(:de) %></li>
+        <li><%= link_to_locale(:en, :class => "no-border") %></li>
+      </ul>
+      <div id="error">
+            <% unless flash.empty? %>
+                <% flash.each do |key, msg| %>
+                  <%= msg %>
+                <% end %>
+            <% end -%>
+        <%= yield(:error) if content_for?(:error) %>
+      </div>
+      <div id="wrapper-2">
+        <div class="wrapper-2-inside">
+          <div id="wrapper-3">
+            <div id="main">
+              <div class="text">
+                  <h1> Login </h1>
+                  <div class="text-meta">
+                    <ul id="text-features">
+                    </ul>
+                    <!-- end text-features --> 
+                  </div>
+                  
+                  <div class="text">
+                    <h1></h1>
+                    <p></p>
+                  </div>
+
+                  <%= yield %>
+
+
+
+                 <div class="login-logos">
+                    <a href="/">
+                      <%= image_tag("login-background.png") %>
+                    </a>
+                  </div>
+                  <p class="forgotPassword">
+                    <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+                      <%= link_to t("devise.links.forgot_password"), new_password_path(resource_name) %>
+                    <% end -%>
+                  </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

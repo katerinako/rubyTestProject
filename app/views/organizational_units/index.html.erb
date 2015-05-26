@@ -1,0 +1,10 @@
+<%= content_for :page_intro, "Organization of SGDV" %>
+<%= button_row do %>
+  <%= link_to_if_permitted :new, :organizational_units, "New Organizational Unit" %>
+<% end %>
+
+<% if @organizational_units.empty? %>
+  <p>
+    The organization has not been defined yet. 
+  </p>
+<% end %>

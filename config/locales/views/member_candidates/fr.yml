@@ -1,0 +1,49 @@
+fr:
+  member_candidates:
+
+    form:
+      personal_information: Données pesonnelles
+      phone_number: Tél.*
+      university_city: Université et ville
+      mentor: "Titre, Université, sous la responsabilité de"
+      short_cv: Informations pour le CV 
+      publish_info: Le CV raccourci est soumis au comité de la SSDV et  ensuite publié avec la photo dans Dermatologica Helvetica.
+      internships: Lieux de formation (facultatif)
+      internship_place: "établissement de formation, Ville"
+      workplaces: Place d’emploi (date, durée, lieu) (facultatif)
+      recommendations: Parrains
+      required_documents: Documents
+      photo: Photo
+      please_enter_your_cv_html: "Merci de bien vouloir remplir les données suivantes pour votre CV:"
+      times_and_places: date, durée, lieu de l’emploi 
+      upload_documents_html: "Pour finaliser la demande veuillez télécharger les documents suivants:"
+      cv: "CV complèt"
+      recommendations_html: Lettres de parrainages de deux membres ordinaires de la SSDV
+      recommendation_letter: "Lettre de parrainage #%{index}"
+      certificates_html: Reconnaissance du titre (médecin et spécialiste)
+      state_exam: médecin
+      specialization: spécialiste 
+      certificates_description_html:
+        "Les spécialistes en dermatologie issus de l'Union Européenne (UE/AELE), joindront au dossier un document de Reconnaissance de Titre à la fois pour le diplôme de médecin et pour le titre de Spécialiste et Dermatologie et Vénéréologie. Ces documents sont délivrés par l'Office Fédéral de la Santé.
+La procédure et les formulaires de demande de Reconnaissance de Titre sont
+disponibles dans le site internet de l'Office Fédéral de la Santé à l'adresse suivante: <a href='http://www.bag.admin.ch/pruefungen/eu_diplom/f/index.htm' target='_blank'>http://www.bag.admin.ch/pruefungen/eu_diplom/f/index.htm</a>"
+      
+
+    new:
+      how_to_become_a_member: Comment devenir membre
+      introduction_text_html:
+        "<p>Selon les statuts de la SSDV (qui se trouvent sur <a href='http://www.derma.ch' target='_blank'>www.derma.ch</a>) peuvent devenir membres ordinaires tous les médecins qui sont en possession du titre fédéral de spécialiste  en dermatologie et vénéréologie ou de la reconnaissance d’un titre étranger en dermatologie et vénéréologie équivalent.</p>
+        <p>La demande d’admission et soumis au comité de la SSDV qui l’examine et décide de l'acceptation ou du refus.</p>"
+
+    show:
+      phone_number: Tél.
+
+    determine:
+      determine_status: "Determine status"
+      phone_number: Tél.
+
+    index:
+      search_for: Recherche de
+
+    member_candidate:
+      phone_number: Tél.

@@ -1,0 +1,51 @@
+<% content_for :page_intro, "#{@member_candidate.name} (#{t '.determine_status'})" %>
+<% content_for :back, link_to(t("back"), @member_candidate) %>
+
+<%= form_for @member_candidate, :url => set_status_member_candidate_path(@member_candidate) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+  <%= classy_field "Name", @member_candidate.name %>
+  <%= render @member_candidate.address, :address_title => "Address" %>
+  <%= render :partial => "phone_number", :object => @member_candidate.phone_number,
+             :locals => {:phone_number_title => t(".phone_number")} %>
+  <%= show_fields @member_candidate, :email_address, :date_of_birth, :place_of_birth, :language %>
+
+  <% if @member_candidate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member_candidate.errors.count, "error") %> prohibited this member_candidate from being saved:</h2>
+
+      <ul>
+      <% @member_candidate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @member and @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member_candidate from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <fieldset>
+      <%= f.classy_radio_selection "Acceptance Status", :acceptance_status,
+        "Ausserordentliches Mitglied (AM)", :am,
+        "Ehrenmitglied (EM)", :em,
+        "Kandidaten Fachexamen", :exam_candidate,
+        "Kein Mitglied", :no_membership,
+        "Korrespondierendes Mitglied (KM)", :km,
+        "Ordentliches Mitglied (OM)", :om,
+        "Passivmitglied (PM)", :pm
+      %>
+
+      <%= f.classy_text_area :acceptance_remarks %>
+    </fieldset>
+  </div>
+<% end %>

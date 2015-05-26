@@ -1,0 +1,10 @@
+en:
+  addresses:
+    addresses_form:
+      add_address: "Add Address..."
+      remove_address: "Remove address?"
+      private: "Private"
+      fax: "Fax"
+      other: "Other"
+      mobile: "Mobile"
+      direct: "Direct"

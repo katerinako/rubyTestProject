@@ -1,0 +1,47 @@
+en:
+  views:
+    actions:
+      new: "New %{model}"
+      edit: "Edit"
+      change_password: "Change Password"
+      destroy: "Destroy"
+      are_you_sure: "Are you sure?"
+  sgdv: "SGDV"
+  dermarena: "Dermarena"
+  other: "Other"
+  telephone_numbers: "Telephone numbers"
+  submit: "Submit"
+  back: "Back"
+  yes: "Yes"
+  no: "No"
+  login: "Login"
+  logout: "Logout"
+  university_hospital: "Univeristy Hospital"
+  clinic: "Clinic"
+  praxis: "Praxis"
+  confirmation: "Are you sure?"
+  direct: Direct
+  fax: Fax
+  mobile: Mobile
+  business: Business
+  other: Other
+  yes: Yes
+  salutation:
+    dr:
+      M: "Dr."
+      F: "Dr."
+    prof:
+      M: "Prof."
+      F: "Prof."
+    M: Mr
+    F: Ms
+    N: Mr/Ms
+  dear_salutation:
+    M: "Dear %{salutation} %{name}"
+    F: "Dear %{salutation} %{name}"
+    N: "Dear %{salutation} %{name}"
+
+  sex:
+    M: Mr
+    F: Ms
+

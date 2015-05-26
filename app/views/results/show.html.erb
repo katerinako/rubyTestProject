@@ -1,0 +1,24 @@
+<%= content_for :page_intro, "Exam Results For #{@exam_candidate.name}" %>
+<%= button_row do %>
+  <%= link_to "Edit", edit_exam_candidate_result_path(@exam_candidate) %> 
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<%= classy_field "Exam Status" do %>
+  <p>
+    <strong>
+    <% if @result.status == :success %>
+      Exam has been successful.
+    <% elsif @result.status == :failure %>
+      Exam was a failure.
+    <% else %>
+      Results are penidng.
+    <% end %>
+    </strong>
+  </p>
+<% end %>
+
+<%= show_fields @result, :general_evaluation, :weaknesses, :strengths %>
+
+<%= link_to 'Back', exam_candidate_path(@exam_candidate) %>

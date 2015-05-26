@@ -1,0 +1,143 @@
+<%= form_for(@exam_candidate, :html => {:multipart => true}) do |f| %>
+
+  <% if @exam_candidate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exam_candidate.errors.count, "error") %> prohibited this candidate from being saved:</h2>
+
+      <ul>
+      <% @exam_candidate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <% if content_for?(:description) %>
+      <div class="text">
+        <%= content_for(:description) %>
+      </div>
+    <% end -%>
+    <fieldset>
+      <h2><%= t 'members.personal_information' %></h2>
+      <%= f.classy_collection_select :exam_id,
+            possible_exams, :id, :to_s %>
+      <%= f.classy_select :language, Candidate::LANGUAGES %>
+      <%= f.classy_select :gender, options_for_gender %>
+      <%= f.classy_text_field :first_name %>
+      <%= f.classy_text_field :last_name %>
+
+      <%= render "addresses/addresses_form",
+               :parent_form => f, :attribute_name => :address, :kinds => [:private], :hide_heading => true %>
+
+      <%= f.classy_email_field :email_address %>
+      <%= f.classy_email_field :email_address_confirmation %>
+
+      <%= f.classy_collection_select :current_clinic_id, possible_clinics, :id, :description %>
+
+    </fieldset>
+
+    <fieldset>
+      <h2><%= t ".medical_exam" %></h2>
+      <div class="text">
+        <%= t ".medical_exam_explanation_html" %>
+      </div>
+      <%= f.classy_text_field :place_of_medical_exam  %>
+      <%= f.classy_year_select :date_of_medical_exam  %>
+      <%= f.classy_check_box :fmh_approval_of_medical_exams %>
+    </fieldset>
+
+    <fieldset>
+      <h2><%= t ".professional_experience" %></h2>
+      <div class="text">
+        <%= t ".professional_description_html" %>
+      </div>
+      <%= f.fields_for :cv do |cvf| %>
+        <%= cvf.classy_file_field "CV", :uploaded_file %>
+
+        <% if @exam_candidate.cv %>
+          <div>
+            <label>CV</label>
+            <span><%= @exam_candidate.cv.name %></span>
+          </div>
+        <% end %>
+
+      <% end %>
+
+      <table id="experience-input" class="discussions-archive-table left">
+        <tr>
+          <th><%= WorkExperience.human_attribute_name(:date_from) %></th>
+          <th><%= WorkExperience.human_attribute_name(:date_to) %></th>
+          <th class="clinic"><%= WorkExperience.human_attribute_name(:clinic) %></th>
+          <% unless @exam_candidate.new_record? %><th> Remove? </th><% end %>
+        </tr>
+
+        <%= f.fields_for :internships do |internship_form| %>
+        <tr class="proto-intern">
+          <td><%= internship_form.classy_month_select "", :date_from %></td>
+          <td><%= internship_form.classy_month_select "", :date_to %></td>
+          <td class="clinic"><%= internship_form.text_field :clinic %><%= internship_form.hidden_field :id %></td>
+          <% unless @exam_candidate.new_record? %><td> <%= internship_form.check_box :_destroy %></td> <% end %>
+        </tr>
+
+        <% end %>
+      </table>
+      <a id="more-internships" href="#">Add Row...</a>
+
+      <div class="inline-field">
+        <p><%= t ".have_experience1" %> <%= f.text_field :months_of_experience %> <%= t ".have_experience2" %></p>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <h2><%= t "member_candidates.form.required_documents" %></h2>
+      <div class="text">
+        <%= t ".documents_description_html" %>
+      </div>
+      <table id="document-input" class="discussions-archive-table left">
+        <tr>
+          <th><%= Attachment.human_attribute_name(:name) %></th>
+          <th><%= Attachment.human_attribute_name(:comment) %></th>
+          <% unless @exam_candidate.new_record? %><th> Remove? </th><% end %>
+        </tr>
+
+        <%= f.fields_for :attachments, @exam_candidate.documents do |doc_form| %>
+          <% if doc_form.object.new_record? %>
+          <tr class="proto">
+            <td>
+              <div>
+              <%= doc_form.file_field :uploaded_file %>
+              <%= doc_form.hidden_field :retained_uploaded_file %>
+            </div>
+              <% if doc_form.object.uploaded_file && doc_form.object.uploaded_file.retained? %> 
+              <div class="hint">Already uploaded: <%= doc_form.object.uploaded_file.retained_attrs[:name] -%></div>
+              <% end %>
+            </td>
+            <td><%= doc_form.text_field :comment %></td>
+            <td></td>
+          </tr>
+          <% else %>
+          <tr>
+            <td><%= doc_form.object.name %> <%= doc_form.hidden_field :id %></td>
+            <td><%= doc_form.object.comment %></td>
+            <td><%= doc_form.check_box :_destroy %></td>
+        </tr>
+        <% end %>
+       <% end %>
+      </table>
+      <a id="more-docs" href="#">Add row...</a>
+    </fieldset>
+
+    <% if @exam_candidate.new_record? %>
+      <fieldset>
+        <h2><%= t ".terms" %></h2>
+        <div class="text">
+          <%= t ".terms_description_html" %>
+        </div>
+        <%= f.classy_check_box t(".agree_to_terms"), :application_terms  %>
+      </fieldset>
+    <% end %>
+  </div>
+
+<%= f.classy_submit nil, content_for(:back) %>
+<% end %>

@@ -1,0 +1,21 @@
+fr:
+  posts:
+
+    post:
+      edit_post: "[Adapter]"
+      remove_post: "[Décharger]"
+      
+    form:
+      facility_hint: "Chercher un cabinet ou clinique existante par entrer l'addresse ou nom du cabinet / clinique ou veuillez ajouter un nouveau cabinet avec le bouton ci-dessous."
+      posted_at: Cabinet / Clinique 
+
+
+    new:
+      new_post_for: Choisir un cabinet / clinique existante dans la liste
+      new_post_at: Choisir un cabinet / clinique existante dans la liste
+    edit:
+      edit_post_for: Éditer votre fonction
+      edit_post_at: Éditer votre fonction
+
+    new_post_with_facility:
+      new_praxis: Ajouter un nouveau cabinet

@@ -1,0 +1,20 @@
+<% designation_types.each_with_index do |designation_type, i| %>
+  <p>
+    <%= classy_field "#{(i+1)}." do %>
+      <%= designation_type.name %>
+      <%= link_to '[Remove]', designation_type, :confirm => 'Are you sure?', :method => :delete %>      
+    <% end %>
+  </p>
+<% end %>
+<% if @designation_types.empty? %>
+  <p><em>None present</em></p>
+<% end %>
+
+<h2><%= template_title %></h2>
+<%= form_for template_object do |f| %>
+  <div class="form-wrapper">
+    <%= f.hidden_field :grouping %>
+    <%= f.classy_text_field "Name", :name %>
+    <%= f.classy_submit %>
+  </div>
+<% end %>

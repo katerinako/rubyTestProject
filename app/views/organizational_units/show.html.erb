@@ -1,0 +1,30 @@
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @organizational_unit, 'Edit'%> 
+  <%= link_to_if_permitted :destroy, @organizational_unit, 'Destroy', 
+                           :confirm => 'Are you sure?', :method => :delete %> 
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<% unless @organizational_unit.designations.current.empty? %>
+  <h2>Current Designations</h2>
+  <%= render :partial => "designation", :collection => @organizational_unit.designations.current,
+             :locals => {:owner => @organizational_unit, :remover => :remove_designation_organizational_unit_path} %>
+<% end %>
+
+<% unless @organizational_unit.designations.past.empty? %>
+  <h2>Past Designations</h2>
+  <%= render :partial => "designation", :collection => @organizational_unit.designations.past,
+             :locals => {:owner => @organizational_unit, :remover => :remove_designation_organizational_unit_path} %>
+<% end %>
+
+<% if permitted_to? :add, :designations %>
+  <p>
+    <%= link_to "[Add Designation]", 
+        new_designation_path(:coming_from => 'organizational_unit', :organizational_unit_id => @organizational_unit.id) %>
+  </p>
+<% end %>
+
+<%= render :partial => "sub_structure", :locals => {:org_unit => @organizational_unit} %>
+
+

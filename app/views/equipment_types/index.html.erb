@@ -1,0 +1,24 @@
+<%= content_for :page_intro, "Equipment Types" %>
+
+<div id="eq-types">
+  <% @equipment_types.each_with_index do |equipment_type, i| %>
+    <p>
+      <%= classy_field "#{(i+1)}." do %>
+        <%= equipment_type.kind %>
+        <%= link_to '[Remove]', equipment_type, :confirm => 'Are you sure?', :method => :delete %>      
+      <% end %>
+    </p>
+  <% end %>
+  <% if @equipment_types.empty? %>
+    <p><em>No types</em></p>
+  <% end %>
+  
+  <h2>Add New Equipment Type</h2>
+  <%= form_for @new_equipment_type do |f| %>
+    <div class="form-wrapper">
+      <%= f.classy_text_field "Type Name", :kind %>
+      <%= f.classy_submit %>
+    </div>
+  <% end %>
+  
+</div>

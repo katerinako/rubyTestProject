@@ -1,0 +1,25 @@
+<%= content_for :page_intro, @exam.name %>
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @exam, "Edit" %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<%= show_fields @exam, :location %>
+<%= classy_field "Date", "#{@exam.date_of_exam} between #{@exam.start_time.to_formatted_s(:time)} - #{@exam.end_time.to_formatted_s(:time)}" %>
+
+<%= show_fields @exam, :application_deadline %>
+<%= classy_field "Application status" do %>
+  <% if @exam.applications_allowed? %>
+    Applications are <strong>open</strong>
+  <% else %>
+    <strong>Applications are no longer allowed</strong>
+  <% end %>
+<% end %>
+
+<%= show_fields @exam, :description %>
+
+<h2>Candidates</h2>
+<%= render :partial => 'candidates' %>
+
+<%= show_last_modified @exam %>

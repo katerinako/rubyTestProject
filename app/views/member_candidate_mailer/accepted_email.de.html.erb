@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p><%= dear_salutation(@member_candidate) -%>,</p>
+    <p>
+      Es freut uns, Ihnen mitteilen zu können, dass Ihr Beitrittsgesuch vom Vorstand der SGDV bewilligt wurde. 
+    </p>
+    <p>
+      Ihre Mitgliederkategorie:
+      <%= MemberCandidatesController::ACCEPTANCE_STATUSES[@member_candidate.acceptance_status] %>
+    </p>
+    <p>
+      Die Statuten der SGDV finden Sie auf unserer Webseite www.derma.ch. Diese beinhaltet zudemi
+      einen Mitgliederbereich, der Ihnen per sofort zur Verfügung steht. Um Ihren Zugang zu 
+      aktivieren, klicken Sie bitte auf folgenden 
+      <%= link_to "Link", edit_password_url(@member, :reset_password_token => @member.reset_password_token, :locale => :de) %>.
+      Ihr Passwort kann individuell angepasst werden. 
+
+
+    <p>Als Benutzernamen benutzen Sie bitte Ihre e-mail-Adresse: <%= @member.username %>.</p>
+
+    <p>Wir heissen Sie In der Gesellschaft herzliche willkommen!</p>
+    <p>
+      Mit freundlichen Grüssen<br />
+      Generalsekretariat SGDV 
+    </p>
+  </body>
+</html>

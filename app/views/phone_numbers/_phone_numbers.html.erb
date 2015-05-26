@@ -1,0 +1,4 @@
+<h2><%= t :telephone_numbers %></h2>
+<% phone_numbers.each do |phone_number| %>
+  <%= classy_field phone_number.localized_kind, phone_number.number %>
+<% end %>

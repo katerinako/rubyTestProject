@@ -1,0 +1,24 @@
+<p><%= dear_salutation(@exam_candidate) -%>,</p>
+
+<p>
+  Nous accusons réception de votre inscription à l’examen de spécialiste en Dermatologie et 
+  Vénéréologie qui aura lieu le 
+  <strong> <%= l @exam_candidate.exam.date_of_exam, :format => :long %>
+  à <%= @exam_candidate.exam.location %>
+  </strong>
+</p>
+
+<p>
+  La taxe d’examen s’élève à CHF 1'000.- pour non-membres et CHF 800.- pour les membres de la SSDV. 
+  La facture vous parviendra par courrier au <strong>plus tard en 
+  <%= l @exam_candidate.exam.feedback_date, :format => '%B' -%></strong>. 
+</p>
+
+<p>
+  Des informations détaillées concernant l’examen vous parviendront environ un mois avant l’examen.
+</p>
+ 
+<p>
+  Ave nos salutations les meilleures.<br />
+  Secrétariat général SSDV pour la commission des examens de spécialiste
+</p>

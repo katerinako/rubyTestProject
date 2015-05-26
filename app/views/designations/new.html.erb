@@ -1,0 +1,11 @@
+<% content_for :page_intro, if @designation.member 
+     "New Designation for #{@designation.member.name}" 
+   elsif @designation.organizational_unit
+     "New Designation to #{@designation.organizational_unit.name}"
+   else
+     "New Designation"
+   end %>
+
+<% content_for :back, link_to("Back", @destination) %>
+
+<%= render 'form' %>

@@ -1,0 +1,28 @@
+<% if @organizational_unit.parent %>
+  <p>
+    <em>This Organizational unit is a child of <%= @organizational_unit.parent.name %></em>
+  </p>
+<% end %>
+
+<%= form_for(@organizational_unit) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+  
+  <% if @organizational_unit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organizational_unit.errors.count, "error") %> prohibited this organizational_unit from being saved:</h2>
+
+      <ul>
+      <% @organizational_unit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-wrapper">
+    <%= f.classy_text_field :name %>
+    <% unless @organizational_unit.parent.nil? %>
+      <%= f.hidden_field :parent_id %>
+    <% end %>
+  </div>
+<% end %>

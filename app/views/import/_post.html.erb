@@ -1,0 +1,7 @@
+<strong>Function:</strong> <%= show_attribute action, [:posts_attributes, post_counter, :function] %> <br/>
+
+<% if post[:facility_id] %>
+  <em>Will be associated with the facility ID <%= post[:facility_id] %></em>
+<% else %>
+  <%= show_attribute action, [:posts_attributes, post_counter, :facility_attributes] %>
+<% end %>

@@ -1,0 +1,16 @@
+<%= content_for :page_intro, "Change your password" %>
+<% hide_navigation %>
+
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="form-wrapper">
+    <%= f.hidden_field :reset_password_token %>
+    <%= f.classy_password_field :password %>
+    <%= f.classy_password_field :password_confirmation %>
+    
+    <%= f.classy_submit "Change my password" %>
+  </div>
+
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

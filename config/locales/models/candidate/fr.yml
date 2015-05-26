@@ -1,0 +1,42 @@
+fr:
+  activerecord:
+    models:
+      candidate:
+        one: "MEMBER CANDIDATE"
+        many: "MEMBER CANDIDATES"
+
+    attributes:
+
+      candidate:
+        name: "Nom"
+        email_address: "E-mail"
+        email_address_confirmation: "Confirmation E-mail"
+        title: "Titre"
+        first_name: "Prénom"
+        middle_name: "Complément"
+        last_name: "Nom"
+        date_of_birth: "Date de naissance"
+        place_of_birth: Lieu de naissance
+        language: "Langue"
+        gender: "Appel"
+        localized_gender: "Appel"
+        university: Etudes
+        date_of_medical_exam: &exam_date Diplom fédéral (année)
+        year_of_medical_exam: *exam_date
+        place_of_medical_exam: Diplom fédéral (ville)
+        disertation: Thèse 
+        date_of_dermatology_diploma: Date de l’optention du titre de spécialiste en Dermatologie et Vénéréologie (année)
+        research_scollarships: D’autres données (recherche, etc.) (facultatif)
+        photo: "Photo"
+        first_recommender: Parrains #1
+        second_recommender: Parrains #2
+        agrees_to_publish_cv: J’accepte la publication dans DH
+        months_of_experience: mois de formation postgraduée en Dermatologie et Vénérélogie
+
+      exam_candidate:
+        exam_id: &exam_title "Examen"
+        exam: *exam_title
+        language: Langue d’examen
+        current_clinic: &current_clinic Lieu de formation actuel
+        current_clinic_id: *current_clinic
+        fmh_approval_of_medical_exams: Reconnaissance d'un diplôme étranger

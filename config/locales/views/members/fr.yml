@@ -1,0 +1,31 @@
+fr:
+  members:
+    index:
+
+    show:
+      add_post: "[Choisir un cabinet / clinique existante dans la liste]"
+      edit_post: "[Adapter]"
+      remove_post: "[Décharger]"
+      no_designations: "There are no current designations."
+      no_past_designations: "There are no designations in the past."
+      add_membership: "[Add Membership]"
+      add_my_praxis: "[Ajouter un nouveau cabinet]"
+
+    welcome:
+      welcome: Welcome to our new site!
+      welcome_message:
+        html: <p>Welcome to our site.</p>
+          <p>Please make sure that you revise your profile informtion</p>
+          </p>Thank You!</p>
+      take_me_to_the_website: "Take Me To the Website"
+
+
+    edit_password:
+      changing_password: Veuillez modifier ce mot de passe
+      case_sensitive: S'il vous plaît noter majuscules et minuscules
+
+    personal_information: "Informations personnelles"
+    private_address: "Adresse privée"
+    membership: "Affiliation"
+    praxis_clinic: "Cabinet / Clinique"
+    designations: "Functions"

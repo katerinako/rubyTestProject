@@ -1,0 +1,17 @@
+<%= content_for :page_intro, "Forgot your password?" %>
+<% hide_navigation %>
+
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-wrapper">
+    <%= f.classy_text_field :email %>
+    <p class="descr">
+    Please put your e-mail address here to get a new password.
+    Only registered e-mail addresses with this system will be recognized.</p>
+    <%= f.classy_submit "Send me reset password instructions" %>
+  </div>
+
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

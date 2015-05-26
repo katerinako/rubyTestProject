@@ -1,0 +1,45 @@
+de:
+  exam_candidates:
+
+    new:
+      title: Anmeldung Facharztexamen in Dermatologie und Venerologie
+      explanation_html: |
+        <p>
+          Als Grundlage für die Prüfung gilt das aktuelle Weiterbildungsprogramm für Dermatologie 
+          und Venerologie. Abrufbar beim Schweizerischen Institut für Weiter-und Fortbildung SIWF 
+          (<a href='http://www.fmh.ch/bildung-siwf.html' target='_blank'>http://www.fmh.ch/bildung-siwf.html</a>).
+        </p>
+
+    form:
+      medical_exam: Staatsexamen
+      medical_exam_explanation_html: |
+        <p>
+          Zur Facharztprüfung wird nur zugelassen, wer über ein eidgenössisches oder
+          anerkanntes ausländisches Arztdiplom verfügt (WBO - Weiterbildungsordnung SIWF (V - Art. 23.4)).
+        </p>
+      professional_experience: Weiterbildung
+      professional_description_html: |
+        <p>
+          Die Prüfung wird  im letzten Jahr der reglementarischen Weiterbildung abgelegt
+          (dh. ab 48 Monaten Weiterbildung für Dermatologie).
+        </p>
+      documents_description_html: |
+        <p>
+          z.B. Anerkennung und Bestätigung der Weiterbildung durch die FMH.
+        </p>
+      terms: Bedingungen
+      terms_description_html: |
+        <p>
+          Durch die Anmeldung an die der Prüfung wird Ihr Chefarzt
+          automatisch aufgefordert, uns zu bestätigen, dass Sie 48
+          Monate Weiterbildung und die vorgesehenen 9 Subspezialitäten
+          gemäss aktuellem Weiterbildungsprogramm für Dermatologie und
+          Venerologie absolviert haben.
+        </p>
+        <p>
+          <strong>Die SGDV erhebt eine Prüfungsgebühr von  CHF 1'000.- (CHF 800.- für Mitglieder der SGDV).</strong>
+        </p>
+      agree_to_terms: Ich bestätige hiermit die Prüfungsbedingungen gemäs WBP zu erfüllen
+      have_experience1: Ich habe zum Zeitpunkt der Prüfung *
+      have_experience2: Monate Weiterbilung in Dermatologie und Venerologie absolviert
+      

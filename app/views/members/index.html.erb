@@ -1,0 +1,41 @@
+<%= content_for :page_intro, Member.model_name.human(:count => :many) %>
+
+<%= button_row do %>
+  <%= link_to_if_permitted :new, :members, t("views.actions.new", :model => Member.model_name.human) %>
+<% end %>
+
+
+<%= form_tag members_path, :method => :get do %>
+  <p class="search-box">
+    <%= label_tag :q, t(".search_for")  %>
+    <%= select_tag :kind, options_for_select(options_for_filter, @kind) %>
+    <%= search_field_tag :q, @q %>
+  </p>
+<% end %>
+
+<table id="members" class="discussions-archive-table left">
+  <tr>
+    <th><%= Member.human_attribute_name(:name) %></th>
+    <th><%= Member.human_attribute_name(:email) %></th>
+    <th></th>
+  </tr>
+
+<% @members[0...25].each_with_index do |member, i| %>
+  <tr>
+    <td><%= i + 1 + @offset %>.  <%= link_to member.name, member %></td>
+    <td><%= member.email %></td>
+    <td><%= link_to_if_permitted :edit, member, "[#{t 'views.actions.edit'}]" %>
+      <%= link_to_if_permitted :destroy, member, "[#{t 'views.actions.destroy'}]", :confirm => 'Are you sure?', :method => :delete %>
+      <% if permitted_to? :sign_in_on_behalf -%>
+        <%= link_to "[Sign In On Behalf]", sign_in_on_behalf_member_path(member), :method => :post %>
+      <% end -%>
+    </td>
+  </tr>
+<% end %>
+</table>
+<p>
+    <%= link_to('< Previous', members_path(:offset => @offset - 25, :q => @q)) if @offset > 1 %>
+    &nbsp;
+    <%= link_to('Next >', members_path(:offset => @offset + 25, :q => @q)) if @members.size > 25 %>
+<br />
+

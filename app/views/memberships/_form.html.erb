@@ -1,0 +1,32 @@
+<%= form_for(@membership) do |f| %>
+  <%= submit_row f %>
+  <%= hidden_field_tag "coming_from", @coming_from %>
+  <%= f.hidden_field :member_id %>
+  
+
+  <% if @membership.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
+
+      <ul>
+      <% @membership.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <%= f.classy_collection_select :membership_category_id, MembershipCategory.all, :id, :name %>
+    <%= f.classy_collection_select :nomination, DesignationType.membership_nominations, :name, :name %>
+    <%= f.classy_date_field :from_date %>
+    <%= f.classy_date_field :to_date %>
+    
+    <%= f.classy_check_box "FMH Member", :fmh_member %>
+    <%= f.classy_check_box "EADV Member", :eadv_member %>
+    <%= f.classy_check_box "FB Diploma FMH SGDV", :fb_diploma_fmh_sgdv %>
+    <%= f.classy_check_box "SDNTT Participant", :sdntt_participant %>
+    <%= f.classy_text_area :comments %>
+    
+  </div>
+<% end %>

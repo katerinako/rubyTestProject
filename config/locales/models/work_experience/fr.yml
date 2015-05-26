@@ -1,0 +1,10 @@
+fr:
+  activerecord:
+    models:
+      work_experience:
+      
+    attributes:
+      work_experience:
+        date_from: De
+        date_to: À
+        clinic: "Lieu / Clinique"

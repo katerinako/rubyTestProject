@@ -1,0 +1,20 @@
+de:
+  activerecord:
+    models:
+      address:
+        one: "Adresse"
+        other: "Adressen"
+    attributes:
+      address:
+        postal_code: "PLZ"
+        city: "Ort"
+        canton: "Kanton"
+        kind: "Art"
+        localized_kind: "Art"
+        name: "Name"
+        street1: "Strasse"
+        street2: "Strasse (2)"
+        country: "Land"
+        
+
+

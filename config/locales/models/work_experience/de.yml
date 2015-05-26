@@ -1,0 +1,11 @@
+de:
+  activerecord:
+    models:
+      work_experience:
+      
+    attributes:
+      work_experience:
+        date_from: Von
+        date_to: Bis
+        clinic: "Ort / Klink"
+

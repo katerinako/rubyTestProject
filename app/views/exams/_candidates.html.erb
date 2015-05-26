@@ -1,0 +1,23 @@
+<!-- <div class="candidate-filter">
+  <%= form_tag exam_path(@exam), :method => "get" do %>
+  <strong>Show: </strong> <%= select_tag :candidate_filter, options_for_select(ExamsController::CANDIDATE_FILTERS.keys, @candidate_filter) %>
+  <%= submit_tag "Update!" %> 
+  <% end %>
+</div> -->
+
+<table id="candidate-list" class="discussions-archive-table left">
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Clinic</th>
+    <th>Status</th>
+  </tr>
+  <% @selected_candidates.each do |c| %>
+    <tr>
+      <td><%= link_to "#{c.first_name} #{c.last_name}", exam_candidate_path(c) %></td>
+      <td><%= render :partial => "address", :object => c.address if c.address.present? %> <br /> <%= c.email_address %></td>
+      <td><%= c.current_clinic.description %></td>
+      <td><%= exam_candidate_status(c) %></td>
+    </tr>
+  <% end %>
+</table>

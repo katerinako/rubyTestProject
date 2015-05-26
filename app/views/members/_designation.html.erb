@@ -1,0 +1,21 @@
+<%= classy_field designation.kind do %>
+  <%= link_to designation.organizational_unit.name, designation.organizational_unit %> <br />
+  <% if permitted_to? :edit, designation %>
+    <em>
+      (<%= designation.from_date %> -
+       <% if designation.to_date %> 
+          <%= designation.to_date %>)
+       <% else %>
+         )
+       <% end %>
+    </em> 
+    <br />
+  <% end -%>
+  <% if permitted_to? :edit, designation %>
+      <%= link_to "[Edit Designation]", edit_designation_path(designation, :coming_from => 'member') %> 
+  <% end %>
+  <% if remover %>
+    <%= link_to "[Remove Designation]", 
+                self.send(remover, owner, :designation_id => designation.id), :method => :post %>
+  <% end %>
+<% end %>

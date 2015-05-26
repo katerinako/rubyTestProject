@@ -1,0 +1,22 @@
+
+<tr>
+<% if document.new_record? %>
+  <%= parent_form.fields_for :attachments, document do |doc_form| %>
+    <td>
+      <%= doc_form.file_field :uploaded_file %>
+      <%= doc_form.hidden_field :retain_uploaded_file %>
+      <%= if doc_form.object.uploaded_file && doc_form.object.uploaded_file.retained? -%>
+        <span class="hint">Already uploaded: <%= doc_form.object.uploaded_file.retained_attrs[:name] -%></span>
+      <% end -%>
+    </td>
+    <td><%= doc_form.text_field :comment %></td>
+    <td></td>
+  <% end %>
+<% else %>
+  <%= parent_form.fields_for :attachments, document do |doc_form| %> 
+    <td><%= document.name %></td>
+    <td><%= document.comment %></td>
+    <td><%= doc_form.check_box :_destroy %></td>
+  <% end %>
+<% end %>
+</tr>

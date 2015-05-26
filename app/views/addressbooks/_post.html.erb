@@ -1,0 +1,36 @@
+<p>
+  <% facility = post.facility %>
+  <% if not facility.name.blank? %>
+    <%= link_to facility.name, facility %>
+    <% link_shown = true %>
+    <br />
+  <% end %>
+  <% if facility.department.present? %>
+    <%= facility.department -%> 
+    <br />
+  <% end -%>
+  <% unless facility.business_address.blank? %>
+    <% address = facility.business_address %>
+
+    <%= link_to_unless link_shown, address.street1, facility %>
+    <% unless address.street2.blank? %>
+      <br />
+      <%= address.street2 %>
+    <% end %>
+    <br />
+    <%= address.postal_code %> <%= address.city %> <%= address.canton %> <br />
+    <%= address.country %>
+    <br />
+  <% end %>
+  <% if card.direct_phone.present? %>
+    <span class="ph-type"><%= phone_type card.direct_phone %>: </span>
+    <span><%= card.direct_phone.number %></span>
+    <br />
+  <% end -%>
+  <% facility.official_phone_numbers.each do |phone_number| %>
+    <span class="ph-type"><%= phone_type phone_number %>: </span>
+    <span><%= phone_number.number %></span>
+    <br />
+  <% end %>
+  <%= render "hint", :facility => facility %>
+</p>

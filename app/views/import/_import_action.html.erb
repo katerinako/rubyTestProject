@@ -1,0 +1,22 @@
+<%= form.fields_for :actions, import_action, :index => index do |af| %>
+  <tr>
+    <%= tag(:td, {:class => class_for_action(import_action)}, true) %>
+      <%= af.select :action, valid_actions_for(import_action) %>
+    </td>
+    <td>
+      <%= import_action.associated_member.id if import_action.associated_member %>
+    </td>
+    <td>
+      <% if import_action.action == :insert || import_action.associated_member.valid? %>
+        <span class="valid">Valid.</span>
+      <% else %>
+        <span class="invalid" title="<%= errors_for_associated_member(import_action) %>">Invalid</span>
+      <% end -%>
+    </td>
+  <% Import::Action::ATTRIBUTES.each do |attr| %>
+    <td class="<%= attr %>">
+        <%= show_attribute import_action, attr %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>

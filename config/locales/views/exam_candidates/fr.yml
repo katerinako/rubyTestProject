@@ -1,0 +1,49 @@
+fr:
+  exam_candidates:
+
+    new:
+      title: Inscription Examen de spécialiste en Dermatologie et Vénéréologie
+      explanation_html: |
+        <p>
+          L’examen de spécialiste sera basé sur le programme actuel de
+          formation post-graduée en Dermatologie et Vénéréologie qui
+          peut être consulté sur le site de l’Institut suisse pour la
+          formation médicale post- graduée et continue ISFM 
+          (<a href='http://www.fmh.ch/fr/formation-isfm.html' target='_blank'>http://www.fmh.ch/fr/formation-isfm.html</a>).
+        </p>
+
+    form:
+      medical_exam: Diplôme fédéral de médecin
+      medical_exam_explanation_html: |
+        <p>
+          Seuls les titulaires d’un diplôme fédéral de médecin ou d’un
+          diplôme de médecin étranger reconnu sont admis
+        </p>
+      professional_experience: Formation postgraduée 
+      professional_description_html: |
+        <p>
+          L’examen de spécialiste se passe au plus tôt durant la dernière
+          année de formation postgraduée réglementaire (RFP - Réglementation pour la formation 
+          postgraduée, ISFM (V - art. 23.4)).
+        </p>
+      documents_description_html: |
+        <p>
+          Par ex. Attestation de la formation postgraduée par la FMH
+        </p>
+      terms: Conditions
+      terms_description_html: |
+        <p>
+          Avec l’envoie de cette inscription à l’examen votre chef de service sera automatiquement
+          demandé de nous confirmer, que vous avez effectuer 48 mois de formation post graduée,
+          les 9 sous-spécialités inclus, selon le programme de formation post-graduée en 
+          Dermatologie et Vénéréologie actuel.       
+        </p>
+        <p>
+          <strong>La SSDV prélève une taxe d’examen de  CHF 1'000.- ( CHF 800.- pour membres de la SSDV).</strong>
+        </p>
+      agree_to_terms: Je confirme d’accomplir les conditions exigées par le programme de formation postgraduée
+      have_experience1: Au moment de l’examen j'aurai effectué *
+      have_experience2: mois de formation postgraduée en Dermatologie et Vénérélogie.
+
+
+

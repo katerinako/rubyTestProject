@@ -1,0 +1,49 @@
+fr:
+  views:
+    actions:
+      edit: "Saisir"
+      change_password: "Changer de mot de passe"
+      destroy: "Effacer"
+    pagination:
+      truncate: ". . ."
+      first: "<<"
+      last: ">>"
+      next: ">"
+      previous: "<"
+  sgdv: "SSDV"
+  dermarena: "Dermarena"
+  other: "Autres"
+  login: "Login"
+  logout: "Logout"
+  submit: "Confirmer"
+  confirm: "Oui"
+  back: "Retour"
+  telephone_numbers: "Tél."
+  university_hospital: "Hopital Universitaire"
+  praxis: "Cabinet"
+  clinic: "Clinique"
+  confirmation: "Are you sure?"
+  private: Privé
+  fax: Ttélécopie
+  mobile: Mobile 
+  other: Autres
+  direct: Direct
+  business: Cabinet
+  yes: Oui
+  salutation:
+    dr:
+      M: "Monsieur le Docteur"
+      F: "Madame le Docteur"
+    prof:
+      M: "Monsieur le Professeur"
+      F: "Madame le Professeur"
+    M: Monsieur
+    F: Madame
+    N: Monsieur/Monsieur
+  dear_salutation:
+    M: "Cher %{salutation} %{name}"
+    F: "Chère %{salutation} %{name}"
+    N: "Cher/Chère %{salutation} %{name}"
+  sex:
+    M: Monsieur
+    F: Madamme

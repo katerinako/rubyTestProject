@@ -1,0 +1,22 @@
+<%= content_for :page_intro, t("login") %>
+<% hide_navigation %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  
+  <div class="form-wrapper">
+    <%= f.classy_login_field :email %>
+    <%= f.classy_password_field :password %>
+    
+    <% if devise_mapping.rememberable? -%>
+      <%= f.hidden_field :remember_me, :value => 1 %>
+    <% end -%>
+    
+    <div class="button-wrapper">
+      <fieldset class="buttons">
+         <%= f.submit t("login") %> 
+      </fieldset>
+      
+    </div>
+  </div>
+  
+<% end %>
+

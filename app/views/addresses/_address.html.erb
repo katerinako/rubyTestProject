@@ -1,0 +1,10 @@
+<%= classy_field address_title do %>
+  <%= address.street1 %>
+  <% unless address.street2.blank? %>
+    <br />
+    <%= address.street2 %>
+  <% end %>
+  <br />
+  <%= address.postal_code %> <%= address.city %> <%= address.canton %> <br />
+  <%= address.country %>
+<% end %>

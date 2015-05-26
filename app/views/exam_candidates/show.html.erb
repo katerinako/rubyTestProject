@@ -1,0 +1,130 @@
+<%= content_for :page_intro, "#{@exam_candidate.name} (exam application)" %>
+
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @exam_candidate, "Edit" %>
+
+  <% unless @exam_candidate.approved_by_clinic_director?  %>
+    <%= link_to_if_permitted :approve_by_clinic_director, @exam_candidate, "Approve (by clinic director)",
+                              :confirm => 'Are you sure?', :method => :post %>
+  <% end %>
+
+  <% if @exam_candidate.approved_by_clinic_director? and not @exam_candidate.approved_by_sgdv? %>
+    <%= link_to_if_permitted :approve_by_sgdv, @exam_candidate, "Approve (by Exam Comission)",
+                              :confirm => 'Are you sure?', :method => :post %>
+  <% end %>
+
+  <% if @exam_candidate.status == :pending_results %>
+    <% if @exam_candidate.result.nil? || @exam_candidate.result.new_record? %>
+      <%= link_to "Enter Results", new_exam_candidate_result_path(@exam_candidate) %>
+    <% else %>
+      <%= link_to "Edit Results", edit_exam_candidate_result_path(@exam_candidate) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<%= show_fields @exam_candidate, :exam %>
+
+<%= show_fields @exam_candidate, :first_name, :last_name %>
+
+<%= render @exam_candidate.address, :address_title => Address.model_name.human     if @exam_candidate.address.present? %>
+
+<%= show_fields @exam_candidate, :email_address %>
+
+<%= classy_field "Status" do %>
+  <strong><%= exam_candidate_status(@exam_candidate) %></strong>
+<% end %>
+
+<%= classy_field "Approval" do %>
+  <p>
+    <% if @exam_candidate.approved_by_clinic_director? %>
+      The candidate has been approved by the clinic director for this exam.
+    <% else %>
+      This candidate has not been approved by the for this exam by the clinic dirctor.
+    <% end %>
+  </p>
+
+  <p>
+    <% if @exam_candidate.approved_by_sgdv? %>
+      The candidate has been approved by the exam comission for this exam.
+    <% else %>
+      This candidate has not been approved by exam comission for this exam.
+    <% end %>
+  </p>
+<% end %>
+<%= show_fields @exam_candidate, :localized_gender %>
+<%=  classy_field "A or B Clinic / University Hospital", @exam_candidate.current_clinic.description %>
+<%= show_fields @exam_candidate, :language,
+                            :year_of_medical_exam,
+                            :place_of_medical_exam
+                             %>
+<%= classy_field "Medical Exam Approved by FMH", (@exam_candidate.fmh_approval_of_medical_exams? ? "yes" : "no") %>
+
+<%= classy_field "Previous Experience" do %>
+  <table id="candidate-experience" class="discussions-archive-table left">
+    <tr>
+      <th>Clinic</tH>
+      <th>From</th>
+      <th>To</th>
+      <th class="left">Months</th>
+    </tr>
+
+    <% @exam_candidate.internships.each do |internship| %>
+
+      <tr>
+        <td><%= internship.clinic %></td>
+        <td><%= internship.date_from.to_formatted_s(:month) %></td>
+        <td><%= internship.date_to.to_formatted_s(:month) %> </td>
+        <td class="left"> <%= format_experience internship.months %> </td>
+      </tr>
+    <% end %>
+
+  </table>
+
+  <p><strong>Total Months:
+    <%= format_experience @exam_candidate.total_expirience %></strong>
+  </p>
+
+<% end %>
+
+<%= classy_field ExamCandidate.human_attribute_name(:months_of_experience) do %> 
+  <strong><%= @exam_candidate.months_of_experience -%></strong> Month(s)
+  <em>(This amount of months was given by the candidate.)</em>
+<% end -%>
+
+<%= classy_field "Other Documents" do %>
+  <table id="candidate-documents" class="discussions-archive-table left">
+    <tr>
+      <th>Document</th>
+      <th>Comment</th>
+    </tr>
+    <% @exam_candidate.documents.each do |doc| %>
+      <tr>
+        <td><%= link_to doc.uploaded_file.name, doc.uploaded_file.url %></td>
+        <td><%= doc.comment%></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>
+
+<% case @exam_candidate.status %>
+<% when :pending_results %>
+  <h2>Results</h2>
+  <%= classy_field "Exam Outcome" do %>
+    <% if @exam_candidate.result.nil? || @exam_candidate.result.new_record? %>
+      <p>Results are not entered yet... </p>
+    <% else %>
+      <p>Results are not finalized yet... </p>
+    <% end %>
+  <% end %>
+<% when :successful_exam, :failed_exam %>
+  <h2>Results</h2>
+  <%= classy_field "Exam Outcome" do %>
+    <%= exam_candidate_status(@exam_candidate) %>
+    <%= link_to "Details...", exam_candidate_result_path(@exam_candidate) %>
+  <% end %>
+<% end %>
+
+<%= show_last_modified @exam_candidate %>

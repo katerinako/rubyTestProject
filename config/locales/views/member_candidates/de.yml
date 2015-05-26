@@ -1,0 +1,46 @@
+de:
+  member_candidates:
+
+    form:
+      personal_information: Persönliche Angaben
+      phone_number: "Tel*"
+      university_city: "Universität und Ort"
+      mentor: "Titel, Universität, unter der Leitung von"
+      short_cv: Angaben zum CV
+      publish_info: Der Kurzlebenslauf wird dem SGDV-Vorstand  vorgelegt und mit Foto im  Dermatologica Helvetica veröffentlicht.
+      internships: "Ausbildungsorte (fakultativ)"
+      internship_place: "Ausbildungsstätte, Ort"
+      workplaces: "Arbeitsorte (Datum, Dauer, Ort der Anstellung) (fakultativ)"
+      recommendations: Patenschaft
+      required_documents: Dokumente
+      photo: Foto
+      please_enter_your_cv_html:
+        "Bitte füllen Sie nachfolgende Angaben für Ihren CV aus:"
+      times_and_places: Datum, Dauer, Ort
+      upload_documents_html: "Um den Antrag zu  vervollständigen, bitten wir Sie folgende Dokumente hochzuladen:"
+      cv: Vollständiger CV
+      recommendations_html: Zwei Empfehlungsschreiben (Patenbriefe) von zwei ordentlichen Mitgliedern der SGDV  
+      recommendation_letter: "Empfehlungsschreiben #%{index}"
+      certificates_html: Titelanerkennung (Staatsexamen und Facharzttitel)
+      state_exam: Staatsexamen
+      specialization: Facharzttitel
+      certificates_description_html:
+        "Ärzte, die ihr Diplom und die Facharztweiterbildung als Dermatologe in der Europäischen Union (UE/AELE) erworben haben,  werden gebeten ebenfalls ihre Titelanerkennungen beizulegen. Es handelt sich dabei um die vom Bundesamt für Gesundheit ausgestellte Anerkennung des Diploms und des Facharzttitels  für Dermatologie und Venerologie.
+Die Formulare zur Erlangung der Titelanerkennung befinden sich auf der Webseite des Bundesamtes für Gesundheit, <a target='_blank' href='http://www.bag.admin.ch/themen/berufe/00406/index.html?lang=de'>http://www.bag.admin.ch/themen/berufe/00406/index.html?lang=de</a>"
+
+    new:
+      how_to_become_a_member: Wie werde ich Mitglied
+      introduction_text_html:
+        <p>Gemäss den Statuten der SGDV,  die Sie auf unserer Homepage  <a href='http://www.derma.ch' target='_blank'>www.derma.ch</a>  finden,  kann  jeder Arzt, der den eidgenössischen Facharzttitel für Dermatologie und Venerologie, oder aber einen gleichwertigen ausländischen vom Bundesamt für Gesundheit anerkannten Titel, besitzt, ordentliches Mitglied der Gesellschaft werden.</p>
+        <p>Das vollständige Gesuch mit den dazugehörigen Unterlagen wird vom Vorstand der SGDV geprüft und anschliessend über eine Aufnahme entschieden.</p>
+    show:
+
+    determine:
+      determine_status: "Determine status"
+      phone_number: "Tel"
+
+    index:
+      search_for: Suche nach
+
+    member_candidate:
+      phone_number: "Tel"

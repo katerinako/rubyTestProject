@@ -1,0 +1,22 @@
+de:
+  posts:
+
+    post:
+      edit_post: "[Bearbeiten]"
+      remove_post: "[Löschen]"
+
+    form:
+      facility_hint: "Suchen Sie aus der Liste eine bestehende Praxis oder Klinik oder fügen Sie mit dem unterstehenden Button eine neue hinzu."
+      posted_at: "Praxis / Klinik"
+
+    new:
+      new_post_for: Wählen Sie eine bestehende Praxis und Klinik
+      new_post_at: Wählen Sie eine bestehende Praxis und Klinik
+
+    edit:
+      edit_post_for: Funktion anpassen
+      edit_post_at: Funktion anpassen
+
+
+    new_post_with_facility:
+      new_praxis: Fügen Sie eine neue Praxis hinzu

@@ -1,0 +1,24 @@
+<%= form_for([@membership, @invoice]) do |f| %>
+  <%= submit_row f %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% @invoice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-wrapper">
+    <%= f.classy_text_field "Amount (CHF)", :fee_amount %>
+    <%= f.classy_date_field :period_from_date %>
+    <%= f.classy_date_field :period_to_date %>
+    <%= f.classy_check_box :invoice_sent %>
+    <%= f.classy_check_box :invoice_paid %>
+    <%= f.classy_text_area :remarks %>
+  </div>
+
+<% end %>

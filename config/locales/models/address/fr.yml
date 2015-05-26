@@ -1,0 +1,18 @@
+fr:
+  activerecord:
+    models:
+      address:
+        one: "Adresse"
+        other: "Adresses"
+    attributes:
+      address:
+        postal_code: "CP"
+        city: "Lieu"
+        canton: "Canton"
+        street1: "Rue"
+        street2: "Rue (2)"
+        country: "Pays"
+        kind: "Sorte"
+        localized_kind: "Sorte"
+
+    

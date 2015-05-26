@@ -1,0 +1,44 @@
+de:
+  activerecord:
+    models:
+      candidate:
+        one: "MEMBER CANDIDATE"
+        other: "MEMBER CANDIDATES"
+    attributes:
+
+      candidate:
+        name: "Name"
+        email_address: "E-mail"
+        email_address_confirmation: "E-mail-Bestätigung"
+        title: "Titel"
+        first_name: "Vorname"
+        middle_name: "Zusatz"
+        last_name: "Nachname"
+        date_of_birth: "Geburtsdatum"
+        place_of_birth: "Geburtsort"
+        language: "Sprache"
+        gender: "Anrede"
+        localized_sex: "Anrede"
+        localized_gender: "Anrede"
+        university: "Studium"
+        date_of_medical_exam: &exam_date "Staatsexamen (Jahr)"
+        year_of_medical_exam: *exam_date
+        place_of_medical_exam: "Staatsexamen (Ort)"
+        disertation: "Dissertation"
+        date_of_dermatology_diploma: &derma_date "Erlangung des Facharzttitels für Dermatologie und Venerologie (Jahr)"
+        year_of_dermatology_diploma: *derma_date
+        research_scollarships: "Weitere Angaben (Forschungsaufenthalte, etc.) (fakultativ) "
+        photo: "Foto"
+        first_recommender: "Patenschaft #1"
+        second_recommender: "Patenschaft #2"
+        agrees_to_publish_cv: "Ich bin mit der Veröffentlichung in DH einverstanden"
+        months_of_experience: Monate Weiterbilung in Dermatologie und Venerologie
+      
+      exam_candidate:
+        exam_id: &exam_title "Prüfung"
+        exam: *exam_title
+        language: Prüfungs-Sprache 
+        current_clinic: &current_clinic Aktueller Ausbildungsort
+        current_clinic_id: *current_clinic
+        fmh_approval_of_medical_exams: Anerkennung ausländisches Diplom
+

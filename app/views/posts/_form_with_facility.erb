@@ -1,0 +1,30 @@
+<%= form_for(@post,  
+             :url => posts_path(:with_facility => true, :coming_from => :member)) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <div>
+      <label><%= Post.human_attribute_name :member %></label>
+      <span><%= @post.member.name %></span> <%= f.hidden_field :member_id %>
+      <div class="clear"></div>
+    </div>
+    <%= f.hidden_field :function %>
+
+    <%= f.fields_for :facility do |facility_form| %>
+      <%= render "facilities/partial_form", :f => facility_form, :fixed_kind => true %>
+    <% end %>
+
+  </div>
+<% end %>

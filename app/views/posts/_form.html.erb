@@ -1,0 +1,47 @@
+<%= form_for(@post) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <%= hidden_field_tag "coming_from", @coming_from %>
+
+    <% if @post.member %>
+      <div>
+        <label><%= Post.human_attribute_name :member %></label>
+        <span><%= @post.member.name %></span> <%= f.hidden_field :member_id %>
+        <span class="hint"><%= t ".facility_hint" %></span>
+        <div class="clear"></div>
+      </div>
+    <% else %>
+      <%= f.classy_autocomplete :member_id, autocomplete_member_with_term_posts_path %>
+    <% end %>
+    <% if @post.facility %>
+      <div>
+        <label><%= t ".posted_at" %></label>
+        <span><%= @post.facility.description %></span> <%= f.hidden_field :facility_id %>
+        <div class="clear"></div>
+      </div>
+    <% else %>
+      <%= f.classy_autocomplete :facility_id, autocomplete_facility_with_term_posts_path %>
+    <% end %>
+    <%= f.classy_collection_select :function, DesignationType.all_functions, :name, :name %>
+
+    <% if @post.member %>
+    <div>
+      <span class="hint"><%= link_to t("members.show.add_my_praxis"), new_post_with_facility_posts_path(:member_id => @post.member.id) %></span>
+      <div class="clear"></div>
+    </div>
+    <% end -%>
+  </div>
+<% end %>

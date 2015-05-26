@@ -1,0 +1,5 @@
+<% content_for :page_intro, t(".new_praxis") %>
+
+<% content_for :back, link_to(t(:back), @post.member) %>
+
+<%= render 'form_with_facility' %>

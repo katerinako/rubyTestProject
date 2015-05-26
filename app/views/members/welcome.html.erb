@@ -1,0 +1,10 @@
+<%= content_for :page_intro, t(".welcome") %>
+<% hide_navigation %>
+
+<div class="live-event-details">
+  <%= t(".welcome_message.html") %>
+</div>
+
+<%= button_row do %>
+  <%= link_to t(".take_me_to_the_website"), "/" %>
+<% end -%>

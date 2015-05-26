@@ -1,0 +1,14 @@
+en:
+  facilities:
+
+    show:
+      general_information: General Information
+      equipment: Equipment
+      add_post: "[Add Post]"
+      edit_post: "[Edit Post]"
+      remove_post: "[Remove Post]"
+      no_members: No member information is available. 
+      search: "Search"
+
+    equipment_form:
+      equipment: Equipment

@@ -1,0 +1,40 @@
+en:
+  members:
+
+    index:
+      search_for: "Search For:"
+      all: "all"
+
+    new:
+      new_member: "New Member"
+
+    show:
+      other: "Other"
+      add_membership: "[Add Membership]"
+      add_post: "[Add Post]"
+      no_designations: "There are no current designations."
+      no_past_designations: "There are no designations in the past."
+      add_designation: "[Add Designation]"
+      add_membership: "[Add Membership]"
+      activated: "Active"
+      add_my_praxis: "[Add My Own Praxis]"
+
+    welcome:
+      welcome: Welcome to our new site!
+      welcome_message:
+        html: <p>Welcome to our site.</p>
+          <p>Please make sure that you revise your profile informtion</p>
+          </p>Thank You!</p>
+      take_me_to_the_website: "Take Me To the Website"
+
+    edit_password:
+      changing_password: "Change Your Password"
+      case_sensitive: "Password is case sensitive."
+
+
+    personal_information: "Personal Information"
+    private_address: "Private Address"
+    membership: "Membership"
+    praxis_clinic: "Praxis / Clinic"
+    inactivity: "Incativity"
+    designations: "Designations"

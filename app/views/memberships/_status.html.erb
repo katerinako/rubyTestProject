@@ -1,0 +1,21 @@
+<% if not membership.fee_invoiced? %>
+  <p>
+    <strong class="att">Invoice for the current period has not been sent!</strong>
+  </p>
+<% elsif not membership.invoices_paid? %>
+  <p>
+    <strong class="att">
+      There are unpaid invoices for this membership. 
+    </strong>
+  </p>
+<% elsif membership.invoice_due?(3) %>
+  <p>
+    <em class="att">
+      Invoice for this member is due in 3 months.
+    </em>
+  </p>
+<% else %>
+  <p>
+    <em>Membership is in order.</em>
+  </p>
+<% end %>

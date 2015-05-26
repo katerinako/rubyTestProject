@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      post:
+    attributes:
+      post:
+        member: Member
+        facility_id: Facility
+        facility: Facility
+        
+

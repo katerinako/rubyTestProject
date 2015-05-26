@@ -1,0 +1,146 @@
+<%= content_for :page_intro, @member.name %>
+
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @member, t("views.actions.edit") %>
+  <%= link_to_if_permitted :edit_password, @member, t("views.actions.change_password") %>  
+  <%= link_to_if_permitted :destroy, @member, t("views.actions.destroy") %>
+<% end %>
+<p id="notice"><%= notice %></p>
+
+
+<div id="member-tabs">
+  <ul>
+    <li><a href="#personal-info"><%= t "members.personal_information" %></a></li>
+    <li><a href="#praxis"><%= t "members.praxis_clinic" %></a></li>
+    <li><a href="#private-address"><%= t "members.private_address" %></a></li>
+    <% if permitted_to? :show, :memberships %>
+      <li><a href="#membership"><%= t "members.membership" %></a></li>
+    <% end -%>
+    <li><a href="#designations"><%= t "members.designations" %></a></li>
+    <% if permitted_to? :toggle_group_membership, @member %>
+      <li><a href="#groups">Access Roles</a></li>
+    <% end %>
+  </ul>
+    
+  <div id="personal-info">
+    <%= show_fields @member, :localized_sex, :title, :first_name, :middle_name, :last_name %>
+    
+    <% if permitted_to? :see_date_of_birth, @member %>
+      <%= show_fields @member, :date_of_birth %>
+    <% end %>
+    
+    <%= show_fields @member, :email, :homepage,
+                             :language %>
+
+    <% if permitted_to? :see_inactivity, @member %>
+      <%= classy_field "Hide in Addressbook",
+          (@member.hide_in_addressbook? ? "Yes" : "No") %>
+    <% end %>
+    
+  </div>
+
+  <div id="private-address">
+    <%= show_phone_numbers @member.phone_numbers %>
+    <%= show_addresses @member.addresses %>
+  </div>
+  
+  <% if permitted_to? :show, :memberships %>
+    <div id="membership">
+      <h2><%= t :sgdv %></h2>
+      <%= render @member.memberships.sgdv %>
+    
+      <% if @member.memberships.sgdv.empty? %>
+        <p><em>No SGDV membership currently defined.</em></p>
+      <% end %>
+    
+      <% if permitted_to? :manage, :memberships %>
+        <h2><%= t :dermarena %></h2>
+        <%= render @member.memberships.dermarena %>
+
+        <% if @member.memberships.dermarena.empty? %>
+          <p><em>No Dermarena membership currently defined.</em></p>
+        <% end %>
+      <% end %>
+    
+      <h2><%= t :other %></h2>
+      <%= render @member.memberships.other %>
+
+      <% if @member.memberships.sgdv.empty? %>
+        <p><em>No other memberships currently defined.</em></p>
+      <% end %>
+    
+      <% if permitted_to? :create, :memberships %>
+        <p>
+          <%= link_to t('.add_membership'), new_membership_path(:coming_from => :member,
+                                                              :member_id => @member.id) %>
+        </p>
+      <% end %>
+    </div>
+  <% end -%>
+
+  <div id="praxis">
+    
+    <%= render :partial => "posts/post", :collection => @member.posts, 
+               :spacer_template => "facility_spacer",
+               :locals => {:owner => @member } %>
+
+    <% if @member.posts.empty? %>
+      <p><em>Member currently has no posts to a praxis or clinic.</em></p>
+    <% end %>
+    
+    <% if permitted_to?(:edit, @member) and permitted_to?(:create, :posts) %>
+    <p>
+        <%= link_to t(".add_post"), new_post_path(:coming_from => 'member', :member_id => @member.id) %>
+
+        <%= link_to t(".add_my_praxis"), new_post_with_facility_posts_path(:member_id => @member.id) %>
+    </p>
+    <% end %>
+  </div>
+    
+  <div id="designations">
+    <% if @member.designations.current.empty? %>
+      <p><em><%= t ".no_designations" %></em></p>
+    <% else %>
+      <% @remover = permitted_to?(:remove_designation, @member) ? :remove_designation_member_path : nil %>
+      <%= render :partial => "designation", :collection => @member.designations.current,
+                 :locals => {:owner => @member, :remover => @remover} %>
+    <% end %>
+    
+    <h2>Past</h2>
+    
+    <% if @member.designations.past.empty? %>
+      <p><em><%= t ".no_past_designations" %></em></p>
+    <% else %>
+      <% @remover = permitted_to?(:remove_designation, @member) ? :remove_designation_member_path : nil %>
+      <%= render :partial => "designation", :collection => @member.designations.past,
+                 :locals => {:owner => @member, :remover => @remover} %>
+    <% end %>
+    
+    <% if permitted_to? :create, :designations %>
+      <p>
+          <%= link_to "[Add Designation]", new_designation_path(:coming_from => 'member', :member_id => @member.id) %>
+      </p>
+    <% end %>
+  </div>
+  <% if permitted_to? :toggle_group_membership, @member %>
+    <div id="groups">
+      <table id="group-membership" class="discussions-archive-table left">
+        <tr>
+          <th>Access Role</th>
+          <th><%= t ".activated" %></th>
+        </tr>
+      <% Group.scoped.each do |g| %>
+        <tr>
+          <td class="group-name"><%= g.name %> <br /><em><%= g.code %></em></td>
+          <td><%= toggle_button "membership[#{g.id}]", 
+                  toggle_membership_member_path(@member, g),
+                  @member.groups.exists?(g), :on => "Yes", :off => "No" %>
+          </td>
+        </tr>
+      <% end%>
+      </table>
+    </div>
+  <% end %>
+</div>
+  
+<%= show_last_modified @member %>

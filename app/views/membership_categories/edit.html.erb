@@ -1,0 +1,4 @@
+<% content_for :page_intro, "Editing #{@membership_category.name}" %>
+<% content_for :back, link_to("Back", membership_category_path(@membership_category)) %>
+
+<%= render 'form' %>

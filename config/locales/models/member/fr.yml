@@ -1,0 +1,23 @@
+fr:
+  activerecord:
+    models:
+      member:
+        one: "Membres"
+        other: "Membres"
+    attributes:
+      member:
+        name: "Nom"
+        email: "E-mail"
+        title: "Titre"
+        username: "Nom d’utilisateur"
+        first_name: "Prénom"
+        middle_name: "Complément"
+        last_name: "Nom"
+        date_of_birth: "Date de naissance"
+        homepage: "Site web"
+        language: "Langue"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation Mot de passe"
+        sex: "Appel"
+        localized_sex: "Appel"
+

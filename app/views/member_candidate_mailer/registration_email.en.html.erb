@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Dear SGDV Board Member,</h1>
+    <p>
+    derma.ch has received a membership application by <%= @member_candidate.name %>.
+    </p>
+    <p>
+    You may wish to review this application. You may do so by clicking
+    <%= link_to "this url", member_candidate_url(@member_candidate, :locale => :en) %>.
+    </p>
+    <p>Thank you!</p>
+  </body>
+</html>

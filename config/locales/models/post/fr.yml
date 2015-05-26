@@ -1,0 +1,12 @@
+fr:
+  activerecord:
+    models:
+      post:
+    
+    attributes:
+      post:
+        member: Membres
+        member_id: Membres
+        facility: Cabinet / clinique existante
+        facility_id: Cabinet / clinique existante
+        function: Function

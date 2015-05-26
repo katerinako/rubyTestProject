@@ -1,0 +1,11 @@
+<% content_for :page_intro, "#{@member_candidate.name} (#{t 'nav.membership_application_form'})" %>
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @member_candidate, t("views.actions.edit") %>
+  <% if permitted_to?(:edit, @member_candidate) and @member_candidate.acceptance_status.to_sym == :applied %>
+    <%= link_to "Determine Membership Kind", determine_member_candidate_path(@member_candidate)  %>
+  <% end %>
+<% end %>
+
+<%= render @member_candidate  %>
+
+<%= show_last_modified @member_candidate %>

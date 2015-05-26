@@ -1,0 +1,52 @@
+
+<%= form_for @search, :url => addressbook_path, :html => {:method => :get} do |f| %>
+  <ul id="ab-search">
+    <li>
+      <% personal_information = :with_personal_info_term %>
+      <%= f.label personal_information, t("members.personal_information") %> <br />
+      <%= f.search_autocomplete personal_information, autocomplete_personal_addressbook_path %>
+      <span class="descr"><%= t ".personal_example" %></span>
+    </li>
+    <li>
+      <% businsess_information = :with_business_info_term %>
+      <%= f.label businsess_information, t(".clinic_address") %> <br />
+      <%= f.search_autocomplete businsess_information, autocomplete_business_addressbook_path %>
+      <span class="descr"><%= t ".address_example" %></span>
+    </li>
+    <li>
+      <% postal_canton = :with_canton_postal_term %>
+      <%= f.label postal_canton, t(".postal_canton") %> <br />
+      <%= f.search_autocomplete postal_canton, autocomplete_postal_canton_addressbook_path %>
+      <span class="descr"><%= t ".postal_example" %></span>
+    </li>
+    <li>
+      <% equipment = :with_equipment_term %>
+      <%= f.label equipment, t("facilities.show.equipment") %> <br />
+      <%= f.search_autocomplete equipment, autocomplete_equipment_addressbook_path %>
+      <span class="descr"><%= t ".equipment_example" %></span>
+    </li>
+    <li>
+      <% specialization = :with_specialization_term %>
+      <%= f.label specialization, t(".specialization") %>
+      <%= f.search_autocomplete specialization, autocomplete_specialization_addressbook_path %>
+      <span class="descr">Akne, Onkologie, ...</span>
+    </li>
+  </ul>
+
+  <p class="search-btn">
+    <%= f.submit t(".search") %>
+    <% if permitted_to?(:export, :addressbooks) %> 
+      <%= f.submit t(".export") %>
+    <% end -%>
+  </p>
+
+    <ul class="sgdv-structure">
+      <% @structure_top_level.each do |branch| %>
+        <%= render 'organizational_units/branch', :branch => branch, 
+              :depth => ((!permitted_to?(:edit, :organizational_units) && 
+                         branch.tag == "specialization") ? 0 : 1) %>
+      <% end %>
+    </ul>
+<% end %>
+
+

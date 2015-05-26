@@ -1,0 +1,29 @@
+<%= content_for :page_intro, "Exams Overview" %>
+
+<%= button_row do %>
+  <%= link_to_if_permitted :new, :exams,  "New Exam" %>
+<% end %>
+
+<table id="exam-table" class="discussions-archive-table left">
+  <tr>
+    <th>Exam</th>
+    <th>Date</th>
+    <th>Application Deadline</th>
+    <th>Actions</th>
+  </tr>
+
+<% @exams.each do |exam| %>
+  <tr>
+    <td><%= link_to exam.name, exam %></td>
+    <td><%= exam.date_of_exam %></td>
+    <td><%= exam.application_deadline %></td>
+    <td>
+      <%= link_to_if_permitted :edit, exam, '[Edit]' %>
+      <%= link_to_if_permitted :destroy, exam, '[Destroy]', :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

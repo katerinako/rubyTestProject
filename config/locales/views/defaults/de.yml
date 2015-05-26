@@ -1,0 +1,52 @@
+de:
+  views:
+    actions:
+      edit: "Bearbeiten"
+      change_password: "Passwort ändern"
+      destroy: "Löschen"
+    pagination:
+      truncate: ". . ."
+      first: "<<"
+      last: ">>"
+      next: ">"
+      previous: "<"
+  sgdv: "SGDV"
+  dermarena: "Dermarena"
+  other: "Andere"
+  login: "Login"
+  logout: "Logout"
+  submit: "Bestätigen"
+  confirm: "Ja"
+  back: "Zurück"
+  telephone_numbers: "Tel."
+  praxis: "Praxis"
+  university_hospital: "Universitätsklinik"
+  clinic: "Klinik"
+  confirmation: "Are you sure?"
+  private: Privat
+  fax: Fax
+  mobile: Mobile
+  business: Arbeit
+  direct: Direkt
+  other: Andere
+  salutation:
+    dr:
+      M: "Herr Dr."
+      F: "Frau Dr."
+    prof:
+      M: "Herr Prof."
+      F: "Frau Prof."
+    M: Herr
+    F: Frau
+    N: Herr/Frau
+  dear_salutation:
+    M: "Sehr geehrter %{salutation} %{name}"
+    F: "Sehr geehrte %{salutation} %{name}"
+    N: "Sehr geherte(r) %{salutation} %{name}"
+
+  sex:
+    M: Herr
+    F: Frau
+  
+
+

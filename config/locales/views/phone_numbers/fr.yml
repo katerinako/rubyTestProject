@@ -1,0 +1,9 @@
+fr:
+  phone_numbers:
+    phone_numbers_form:
+      private: Privé
+      fax: Ttélécopie
+      mobile: Mobile 
+      other: Autres
+      business: Cabinet
+      remove: Décharger

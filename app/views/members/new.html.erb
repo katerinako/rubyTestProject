@@ -1,0 +1,7 @@
+<% content_for :page_intro, t(".new_member") %>
+<% content_for :back do %>
+  <%= link_to t(:back), members_path %>
+<% end %>
+
+<%= render 'form' %>
+

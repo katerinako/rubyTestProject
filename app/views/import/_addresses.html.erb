@@ -1,0 +1,9 @@
+<strong><%= show_attribute action, path + [addresses_counter, :kind] %></strong><br/>
+
+<% [[:street1], [:street2], [:postal_code, :city, :canton], [:country]].each do |field_group| %>
+  <% field_group.each do |field| %>
+    <%= show_attribute action, path + [addresses_counter, field] %>
+  <% end -%>
+  <br />
+<% end %>
+

@@ -1,0 +1,29 @@
+  <%= form_for @result, 
+        :url => exam_candidate_result_path(@exam_candidate),
+        :html => {:multipart => true} do |f| %>
+        <%= f.classy_submit nil, content_for(:back) %>
+
+  <div class="form-wrapper results">
+        
+    
+    <% if @result.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+        <ul>
+        <% @result.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <%= f.classy_select    :status,  Result::STATUSES %>
+    <%= f.classy_text_area :general_evaluation %>
+    <%= f.classy_text_area :strengths %>
+    <%= f.classy_text_area :weaknesses %>
+      
+    <div class="clear"></div>
+    </div>
+  <% end %>

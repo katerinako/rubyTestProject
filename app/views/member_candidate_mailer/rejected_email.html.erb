@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Dear <%= @member_candidate.name %></h1>
+    <p>
+    Your SGDV Membership application has been processed. However, the application has not been approved.
+    </p>
+    <p>
+    Your membership application status is:
+    <%= MemberCandidatesController::ACCEPTANCE_STATUSES[@member_candidate.acceptance_status] %>
+    </p>
+    <p>SGDV Board remarks:</p>
+    <blockquote>
+      <%= @member_candidate.acceptance_remarks %>
+    </blockquote>
+  </body>
+</html>

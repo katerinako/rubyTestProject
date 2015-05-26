@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="js-on">
+<head>
+  <title><%= if @breadcrumbs and @breadcrumbs.any? then @breadcrumbs.last[0] else @title end %></title>
+  <%= stylesheet_link_tag "scaffold", 
+                          "styles", 
+                          "aristo/jquery-ui-1.8.5.custom",
+                          "additional" %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'jquery-ui-1.8.10.custom' %>
+  <%= javascript_include_tag 'autocomplete-rails' %>
+  <%= javascript_include_tag 'autocomplete-search' %>
+  
+  <%= javascript_include_tag 'upload' %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="section" class="inner-page with-nav">
+  <div id="wrapper">
+    <%= render "shared/branding" %>
+    <% unless @hide_navigation %>
+      <%= render "shared/nav" %>
+    <% end %>
+    <% if @full_screen %>
+      <div id="full-screen">
+        <% unless flash.empty? %>
+          <div class="flash">
+            <% flash.each do |key, msg| %>
+              <%= content_tag "p", msg, :class => key %>
+            <% end %>
+        <% end -%>
+
+        <%= content_for?(:content) ? yield(:content) : yield %>
+      </div>
+    <% else %>
+      <div id="wrapper-2">
+        <div class="wrapper-2-inside">
+            <div id="nav" role="navigation">
+              <div class="vertical-title"></div>
+              <div id="nav-box">
+                <% if content_for?(:vertical_nav) %>
+                  <%= yield(:vertical_nav) %>
+                <% end %>
+              </div>
+            </div>
+          <div id="wrapper-3">
+            <div id="main" role="main">
+              <%= render 'shared/breadcrumbs' %>
+              <div class="page-intro">
+                <h1><%= content_for?(:page_intro) ? yield(:page_intro) : @title %></h1>
+              </div>
+              <% unless flash.empty? %>
+                <div class="flash">
+                  <% flash.each do |key, msg| %>
+                    <%= content_tag "p", msg, :class => key %>
+                  <% end %>
+              <% end -%>
+              <%= content_for?(:content) ? yield(:content) : yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</body>
+</html>

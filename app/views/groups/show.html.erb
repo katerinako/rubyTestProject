@@ -1,0 +1,12 @@
+<% content_for :page_intro, @group.name %>
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @group, "Edit" %>
+  <%= link_to_if_permitted :destroy, @group, "Destroy" %>  
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+
+<%= show_fields @group, :name, :code, :description %>
+
+<%= link_to 'Back', groups_path %>

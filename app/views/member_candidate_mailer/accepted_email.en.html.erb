@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Dear <%= @member_candidate.name %></h1>
+    <p>
+    We are happy to inform you that your SGDV membership application has been approved.
+    </p>
+    <p>
+    Your membership status is:
+    <%= MemberCandidatesController::ACCEPTANCE_STATUSES[@member_candidate.acceptance_status] %>
+    </p>
+
+    <p>Your account with the derma.ch website is also ready. To activate it, 
+    <%= link_to "please click this link", edit_password_url(@member, :reset_password_token => @member.reset_password_token, :locale => :en) %>. It will take you to our
+    website where you can set your password. </p>
+
+    <p>Your username with the system is your email address: <%= @member.username %>.</p>
+
+    <p>Thank you!</p>
+  </body>
+</html>

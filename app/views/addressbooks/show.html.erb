@@ -1,0 +1,10 @@
+<% content_for :page_intro, t("nav.addressbook") %>
+
+<% if @members.total_count == 0 %>
+  <p class="no-results"><%= t ".no_results" %></p>
+<% else %>
+  <div class="addressbook">
+    <%= render :partial => "card", :collection => @members %>
+  </div>
+  <%= paginate @members %>
+<% end %>

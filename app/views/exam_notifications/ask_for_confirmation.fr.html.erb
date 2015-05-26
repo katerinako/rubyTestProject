@@ -1,0 +1,20 @@
+<p><%= dear_salutation @recipient -%>,</p>
+
+<p>
+  Une inscription aux examens de spécialiste a été soumise. Merci de bien   
+  vouloir la contrôler à l’aide du lien suivant:
+</p>
+
+<p>
+    <%= exam_candidate_url(@exam_candidate, :locale => :fr) %>
+</p>
+<p>
+  <%= @exam_candidate.name -%>
+</p>
+
+<p>Avec votre approbation vous confirmez l’inscription du candidat(e).</p>
+
+<p>
+  Avec nos remerciements et nos meilleures salutations <br/>
+  Secrétariat général SSDV pour la commission des examens de spécialiste
+</p>

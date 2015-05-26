@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      address:
+        one: "Address"
+        other: "Addresses"
+    attributes:
+      address:
+        street1: "Street"
+        street2: "Street (contd.)"

@@ -1,0 +1,16 @@
+de:
+  facilities:
+
+    show:
+      general_information: Allgemeine Informationen
+      equipment: Infrastruktur
+      add_post: "[Hinzufügen]"
+      edit_post: "[Bearbeiten]"
+      remove_post: "[Löschen]"
+      no_members: Keine Information verfügbar
+
+    
+    equipment_form:
+      equipment: Infrastruktur
+      remove: Löschen
+      equipment: Infrastruktur

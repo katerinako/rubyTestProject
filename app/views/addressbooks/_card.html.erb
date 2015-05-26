@@ -1,0 +1,11 @@
+<% if with_hints? %>
+  <div class="card hinted">
+<% else %>
+  <div class="card">
+<% end %>
+  <h3><%= link_to card.name, member_path(card) %></h3>
+  <p><%= card.sgdv_nomination %></p>
+
+  <%= render :partial => "post", :collection => card.posts, :locals => { :card => card } %>
+  <%= render "hint", :member => card %>
+</div>

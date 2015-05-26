@@ -1,0 +1,11 @@
+<% content_for :page_intro, t(".title") %>
+<% hide_navigation %>
+<% hide_english_locale %>
+
+<% content_for :description do %>
+  <p><%= t ".explanation_html" %></p>
+<% end -%>
+
+<%= render 'form' %>
+
+<%# link_to t("back"), exam_candidates_path %>

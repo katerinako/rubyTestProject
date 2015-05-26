@@ -1,0 +1,9 @@
+de:
+  phone_numbers:
+    phone_numbers_form:
+      private: Privat
+      fax: Fax
+      mobile: Mobile
+      business: Arbeit
+      other: Andere
+      remove: "Nummer löschen"

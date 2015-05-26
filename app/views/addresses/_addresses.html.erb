@@ -1,0 +1,4 @@
+<h2><%= Address.model_name.human(:count => addresses.count) %></h2>
+<% addresses.each do |address| %>
+  <%= render address, :address_title => address.localized_kind %>
+<% end %>

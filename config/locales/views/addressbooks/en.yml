@@ -1,0 +1,14 @@
+en:
+  addressbooks:
+
+    show:
+      no_results: No results match the given criteria.
+    
+    search:
+      personal_example: First Name, Last Name, Middle Name
+      clinic_address: "Clinic / Address"
+      address_example: "Clinic, Rue, Phone Number"
+      equipment_example: E.g. "photo", "laser", "UVA", etc..
+      postal_canton: "Postal Code / City / Canton"
+      postal_example: "E.g. 1205, Genève, GE, etc..."
+      search: "Search"

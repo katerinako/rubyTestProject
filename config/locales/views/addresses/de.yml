@@ -1,0 +1,10 @@
+de:
+  addresses:
+    addresses_form:
+      add_address: "Add Address..."
+      remove_address: "Remove address?"
+      private: Privat
+      fax: Fax
+      mobile: Mobile
+      other: Andere
+      business: Arbeit

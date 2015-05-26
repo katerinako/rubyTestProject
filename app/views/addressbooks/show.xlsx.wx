@@ -1,0 +1,172 @@
+xlsx_document :filename => "addressbook.xlsx" do |wb|
+  # def normalized_title(title)
+  #   case title
+  #   when /prof\..*dr\./i
+  #     :prof
+  #   when /dr\..**med\./i
+  #     :dr
+  #   else
+  #     nil
+  #   end
+  # end
+
+  ws = wb[0]
+  
+  salutation_attribute = "salutation"
+
+  member_attributes = %w(title first_name middle_name last_name
+                         language sex date_of_birth homepage email username)
+
+  address_attributes = %w(street1 street2 postal_code city canton country)
+
+  facility_attributes = %w(name department email type_of_education homepage)
+  
+  phone_number_attributes = %w(number)
+
+
+  salutations = {
+    ['M', :dr, "de"] => "Herr Dr.",
+    ['F', :dr, "de"] => "Frau Dr.",
+    ['M', :prof, 'de'] => "Herr Prof.", 
+    ['F', :prof, 'de'] => "Frau Prof.", 
+    ['M', :dr, "fr"] => "Monsieur le Docteur",
+    ['F', :dr, "fr"] => "Madame le Docteur",
+    ['M', :prof, 'fr'] => "Monsieur le Professeur", 
+    ['F', :prof, 'fr'] => "Madame le Professeur", 
+    ['M', 'de'] => "Herr",
+    ['F', 'de'] => "Frau",
+    ['M', 'fr'] => 'Monsieur',
+    ['F', 'fr'] => 'Madame'
+  }
+  
+  # 
+  # labels  
+  # 
+  
+  ws.add_cell(0, 0, salutation_attribute)
+
+  # member attributes
+  member_attributes.each.with_index do |label, index|
+    ws.add_cell(0, index + 1, label)
+  end
+
+  password_col = member_attributes.count + 1
+  
+  ws.add_cell(0, password_col, "password")
+  
+  # private address
+  private_address_col = password_col + 1
+  address_attributes.each.with_index do |label, index|
+    ws.add_cell(0, private_address_col + index, "private_#{label}")
+  end
+  
+  # private phone
+  private_phones_col = private_address_col + address_attributes.count
+  2.times do |index|
+    ws.add_cell(0, private_phones_col + index, "private_phone#{index + 1}")
+  end
+  
+
+  # businesses
+  business_col = []
+  current_col = private_phones_col + 2
+  
+  2.times do |business_no|
+      business_col << current_col 
+      ws.add_cell(0, current_col, "business#{business_no + 1}_function")
+
+      facility_attributes.each.with_index do |label, index|
+        ws.add_cell(0, current_col + index + 1, "business#{business_no + 1}_#{label}")
+      end
+      address_attributes.each.with_index do |label, index|
+        ws.add_cell(0, current_col + facility_attributes.count + 1 + index,
+                 "business#{business_no + 1}_address_#{label}")
+      end
+
+      %w(business_numbers fax_numbers).each.with_index do |label, index|
+        ws.add_cell(0, current_col + facility_attributes.count + address_attributes.count + 1 + index,
+                 "business#{business_no + 1}_#{label}")
+      end
+      
+      current_col += facility_attributes.count + address_attributes.count + 3
+  end
+
+  # memberships
+  membership_col = current_col
+  4.times do |membership_no|
+    ws.add_cell(0, membership_col + membership_no, "membership#{membership_no + 1}")    
+  end
+  
+  # functions
+  functions_col = membership_col + 4
+  4.times do |function_no|
+    ws.add_cell(0, functions_col + function_no, "function#{function_no + 1}")
+  end
+
+  last_modified_col = functions_col + 4
+  ws.add_cell(0, last_modified_col, "last_modified")
+
+  #
+  # data
+  #
+  
+  @members.each.with_index do |member, row|
+    salutation_key = [member.sex, normalized_title(member.title), member.language || "de"]
+    second_key = [member.sex, member.language || "de"]
+
+    salutation = salutations[salutation_key] || salutations[second_key] || ""
+
+    ws.add_cell(row + 1, 0, salutation)
+
+    member_attributes.each.with_index do |attr, col|
+      val = member.send(attr)
+        ws.add_cell(row + 1, col + 1, val)
+    end
+    
+    ws.add_cell(row + 1, password_col, Base64.decode64(member.encrypted_password))
+
+    if member.addresses.count >= 1
+      address = member.addresses.first
+      
+      address_attributes.each.with_index do |attr, index|
+        val = address.send(attr)
+        ws.add_cell(row + 1, private_address_col + index, val)
+      end
+    end
+    
+    member.phone_numbers.take(2).each.with_index do |pn, index|
+      ws.add_cell(row + 1, private_phones_col + index, pn.number)
+    end
+    
+    member.posts.take(2).each.with_index do |post, index|
+      ws.add_cell(row + 1, business_col[index], post.function)
+
+      facility_attributes.each.with_index do |attr, col|
+        ws.add_cell(row + 1, business_col[index] + 1 + col, post.facility.send(attr))
+      end
+      
+      address_attributes.each.with_index do |attr, col|
+        next unless post.facility and post.facility.business_address
+        ws.add_cell(row + 1, business_col[index] + facility_attributes.count + 1 + col, 
+                 post.facility.business_address.send(attr))
+      end
+      
+      %w(business_numbers fax_numbers).each.with_index do |attr, col|
+        ws.add_cell(row + 1, business_col[index] + facility_attributes.count + address_attributes.count + 1 + col,
+                 post.facility.send(attr).map(&:number).join(", "))
+      end
+    end
+
+    member.memberships.current.take(4).each.with_index do |membership, col|
+      ws.add_cell(row +1, membership_col + col,
+               "#{membership.membership_category.kind}:#{membership.membership_category.name}:#{membership.nomination}")
+    end
+    
+    member.designations.current.take(4).each.with_index do |designation, col|
+      ws.add_cell(row + 1, functions_col + col, "#{designation.kind} - #{designation.organizational_unit.name}")
+    end
+    
+    ws.add_cell(row + 1, last_modified_col, member.updated_at.to_datetime.strftime("%FT%T"))
+  end
+
+end

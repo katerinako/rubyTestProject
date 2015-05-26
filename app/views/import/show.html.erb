@@ -1,0 +1,42 @@
+<% full_screen %>
+
+<h1>Import Members</h1>
+
+<%= form_for @import, :url => commit_import_index_path do |f| %>
+
+  <% content_for :helpers do %>
+    <%= link_to "Ignore All", "#", :id => "ignore-all" %>
+    <%= link_to "Ignore Updates", "#", :id => "ignore-updates" %>
+    <%= link_to "Ignore Inserts", "#", :id => "ignore-inserts" %> 
+  <% end %>
+
+  <%= f.classy_submit "Import!", content_for(:helpers) %>
+
+  <table id="import-list" class="discussions-archive-table">
+    <colgroup>
+      <col class="action" />
+      <col class="validation" />
+      <col class="id" />
+      <% Import::Action::ATTRIBUTES.each do |attr| %>
+        <col class="<%= attr %>" />
+      <% end %> 
+    </colgroup>
+    
+    <thead>
+      <th>Action</th>
+      <th>Member ID</th>
+      <th>Valid?</th>
+
+      <% Import::Action::ATTRIBUTES.each do |attr| %>
+        <th class="<%= attr %>"><%= attr %></th>
+      <% end %> 
+      
+    </thead>
+    <tbody>
+      <% @import.actions.each.with_index do |action, index| %>
+        <%= render :partial => 'import_action', :object => action, 
+                                                :locals => {:form => f, :index => index} %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

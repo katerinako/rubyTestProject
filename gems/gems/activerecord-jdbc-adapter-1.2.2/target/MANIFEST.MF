@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Built-By: katerina.koceva
+Created-By: IntelliJ IDEA
+Build-Jdk: ver.2.1.6p336 ( revision 50298) p336
+

@@ -1,0 +1,25 @@
+<h2>Sub-Structure</h2>
+<% if org_unit.children.empty? %>
+  <p> <em>There is no sub-structure currently defined.</em>
+    <% if permitted_to? :create, :organizational_units %>
+      <%= link_to "[New]",  new_organizational_unit_path(:parent_id => org_unit.id) %>
+    <% end %>
+  </p>
+<% else %>
+  <ul id="sub-structure">
+  <% org_unit.children.each_with_index do |child, i| %>
+    <li>
+      <strong><%= link_to child.name, child %></strong>
+      <%= link_to_if_permitted :edit, child, '[Edit]' %>
+      <%= link_to_if_permitted :destroy, child, '[Destroy]', :confirm => 'Are you sure?', :method => :delete %>
+    </li>
+  <% end %>
+  <% if permitted_to? :create, :organizational_units %>
+    <li><%= link_to "[New]",  new_organizational_unit_path(:parent_id => org_unit.id) %></li>
+  <% end %>
+  </ul>  
+<% end %>
+
+<p>
+  
+</p>

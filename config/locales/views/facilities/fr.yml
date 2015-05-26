@@ -1,0 +1,14 @@
+fr:
+  facilities:
+
+    show:
+      general_information: Informations générales
+      equipment: Infrastructure
+      add_post: "[Ajouter]"
+      edit_post: "[Adapter]"
+      remove_post: "[Décharger]"
+      no_members: No member information is available. 
+
+    equipment_form:
+      equipment: Photo-, Laser-, Radiothérapie
+      remove: Décharger

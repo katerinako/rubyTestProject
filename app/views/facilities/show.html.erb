@@ -1,0 +1,66 @@
+<%= content_for :page_intro, @facility.description %>
+
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @facility, t("views.actions.edit") %>
+  <%= link_to_if_permitted :destroy, @facility, t("views.actions.destroy") %>
+<% end %>
+<p id="notice"><%= notice %></p>
+
+
+<div id="facility-tabs">
+  <ul>
+    <li><a href="#general-info"><%= t ".general_information" %></a></li>
+    <li><a href="#equipment"><%= t ".equipment" %></a></li>
+    <li><a href="#members"><%= Member.model_name.human(:count => :many) %></a></li>    
+  </ul>
+    
+  <div id="general-info">
+    <%= show_fields @facility, :localized_kind, :name, :department, :email, :homepage, :type_of_education  %>
+    
+    <%= show_phone_numbers @facility.phone_numbers %>
+    <%= show_addresses @facility.addresses %>
+  </div>
+  
+  <div id="members">
+    <% @facility.posts.each do |post| %>
+      <% member = post.member %>
+      <%= classy_field post.function do  %>
+         <%= link_to member.name, member %>
+         (<%= member.email %>)
+         <br />
+         <% if permitted_to? :edit, post %>
+           <%= link_to t(".edit_post"), edit_post_path(post, :coming_from => 'facility') %>
+         <% end %>
+         
+         <% if permitted_to? :destroy, post %>
+           <%= link_to t(".remove_post"), post_path(post, :back_to => facility_url(@facility)), 
+                :confirm => t(:confirmation), :method => :delete  %>
+        <% end %>
+      <% end %>
+    <% end %>
+    
+    <% if @facility.posts.empty? %>
+      <p><em><%= t ".no_members" %></em></p>
+    <% end %>
+    
+    <% if permitted_to?(:edit, @facility) and permitted_to?(:create, :posts) %>
+    <p>
+        <%= link_to t(".add_post"), new_post_path(:coming_from => 'facility', :facility_id => @facility.id) %>
+    </p>
+    <% end %>
+  </div>
+  <div id="equipment">
+    <% @facility.equipment.each do |equipment_item| %>
+      <%= classy_field equipment_item.equipment_type.kind do %>
+        <p><%= equipment_item.description %></p>
+        <p><%= equipment_item.date_of_purchase %></p>
+        <p><%= equipment_item.condition %>
+      <% end %>
+    <% end %>
+    <% if @facility.equipment.empty? %>
+      <p><em>No equipment information is available.</em></p>
+    <% end %>
+  </div>
+</div>
+
+<%= show_last_modified @facility %>

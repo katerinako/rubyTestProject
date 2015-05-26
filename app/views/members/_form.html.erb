@@ -1,0 +1,51 @@
+<%= form_for(@member) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <fieldset>
+      <h2><%= t "members.personal_information" %></h2>
+      <%= f.classy_small_select :sex, options_for_sex %>
+      <%= f.classy_text_field :title %>
+      <%= f.classy_text_field :first_name %>
+      <%= f.classy_text_field :middle_name %>
+      <%= f.classy_text_field :last_name %>
+      <%= f.classy_date_field :date_of_birth %>
+      <%= f.classy_small_select:language, Member::LANGUAGES %>
+
+      <%= f.classy_text_field :email %>    
+      <%= f.classy_text_field :homepage %>
+      <%= f.classy_text_field :username %>
+      <% if @member.new_record? %>
+        <%= f.classy_password_field :password %>
+        <%= f.classy_password_field :password_confirmation %>
+      <% end %>
+    </fieldset>
+
+    <% if permitted_to? :edit_inactivity, @member %>
+      <fieldset>
+        <h2><%= t "members.inactivity" %></h2>
+        <%= f.classy_check_box :hide_in_addressbook %>
+      </fieldset>
+    <% end -%>
+    
+    <%= phone_numbers_form f, :phone_numbers, PhoneNumber::KINDS_FOR_MEMBER %>
+    
+    <%= addresses_form f, :addresses, Address::KINDS_FOR_MEMBER, true %>
+    
+  </div>
+  
+  <div class="clear"></div>
+  
+<% end %>

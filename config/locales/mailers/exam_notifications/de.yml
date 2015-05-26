@@ -1,0 +1,14 @@
+de:
+  exam_notifications:
+    application_approved:
+      subject: Definitive Bestätigung Ihrer Anmeldung
+
+    application_confirmed:
+      subject: Ihre Anmeldung an die Fachexamen wurde erfolgreich übermittelt
+    
+    ask_for_confirmation:
+      subject: "KLINIKDIREKTOREN: Neue Anmeldung für die Fachexamen!"
+
+    ask_for_confirmation_sgdv:
+      subject: "GENERALSEKRETARIAT: A new exam application was submitted!"
+      

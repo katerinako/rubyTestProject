@@ -1,0 +1,44 @@
+<%= show_fields member_candidate, :name %>
+<%= render member_candidate.address, :address_title => Address.model_name.human %>
+<%= render :partial => "phone_number", :object => member_candidate.phone_number,
+           :locals => {:phone_number_title => t(".phone_number")} %>
+<%= show_fields member_candidate, :email_address, :date_of_birth, :place_of_birth, :language %>
+<%= classy_field t(".status") do %>
+  <%= MemberCandidatesController::ACCEPTANCE_STATUSES[member_candidate.acceptance_status] %>
+<% end %>
+<%= show_fields member_candidate, :acceptance_remarks %>
+
+<h2><%= t ("member_candidates.form.short_cv") %></h2>
+
+<%= show_fields member_candidate, :university, :year_of_medical_exam, :disertation %>
+
+<%= classy_field t("member_candidates.form.internships") do %>
+  <%= render :partial => "work_experience", :collection => member_candidate.internships %>
+<% end %>
+
+<%= show_fields member_candidate, :year_of_dermatology_diploma %>
+
+<%= classy_field t("member_candidates.form.workplaces") do %>
+  <%= render :partial => "work_experience", :collection => member_candidate.places_of_work %>
+<% end %>
+
+<%= show_fields member_candidate, 
+                :research_scollarships, :first_recommender, :second_recommender %>
+
+<%= classy_field MemberCandidate.human_attribute_name(:agrees_to_publish_cv) do
+    if member_candidate.agrees_to_publish_cv? then t("yes") else t("no") end
+end %>
+<h2><%= t "member_candidates.form.required_documents" %></h2>
+
+
+<%= render :partial => 'attachment', :object => member_candidate.cv,
+           :locals => {:attachment_label => "CV"} %>
+
+<%= render :partial => 'attachment', :object => member_candidate.photo,
+           :locals => {:attachment_label => t("member_candidates.form.photo")} %>
+
+<%= render :partial => 'attachment', :collection => member_candidate.recommendation_letters,
+           :locals => {:attachment_label => "Recommendation Letter"} %>
+
+<%= render :partial => 'attachment', :collection => member_candidate.certifications,
+           :locals => {:attachment_label => "Certification"} %>

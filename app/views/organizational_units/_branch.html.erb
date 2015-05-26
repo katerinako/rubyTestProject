@@ -1,0 +1,13 @@
+
+<li>
+  <%= link_to branch.name, branch %> 
+  <% unless branch.children.empty? %>
+  <ul>
+    <% if depth > 0 %>
+      <% branch.children.each do |child| %>
+        <%= render 'organizational_units/branch', :branch => child, :depth => (depth - 1) %>
+      <% end %>
+    <% end %>
+  </ul>
+  <% end %>
+</li>

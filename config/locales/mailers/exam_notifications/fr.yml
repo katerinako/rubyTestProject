@@ -1,0 +1,13 @@
+fr:
+  exam_notifications:
+    application_confirmed:
+      subject: Votre inscription à l’examen de spécialiste a été soumise avec succès
+
+    application_approved:
+      subject: Confirmation définitive
+
+    ask_for_confirmation:
+      subject: "KLINIKDIREKTOREN: Une nouvelle inscription aux examens de spécialiste a été soumise!"
+
+    ask_for_confirmation_sgdv: 
+      subject: "GENERALSEKRETARIAT: A new exam application was submitted!"

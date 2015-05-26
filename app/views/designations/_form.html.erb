@@ -1,0 +1,42 @@
+<%= form_for(@designation) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+
+  <% if @designation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@designation.errors.count, "error") %> prohibited this designation from being saved:</h2>
+
+      <ul>
+      <% @designation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <%= hidden_field_tag "coming_from", "member" %>
+    
+    <% if @designation.member %>
+      <div>
+        <label>Member</label>
+        <span><%= @designation.member.name %></span> <%= f.hidden_field :member_id %>
+        <div class="clear"></div>
+      </div>
+    <% else %>
+      <%= f.classy_autocomplete :member_id, autocomplete_member_with_term_designations_path %>
+    <% end %>
+    <% if @designation.organizational_unit %>
+      <div>
+        <label>Designated To</label>
+        <span><%= @designation.organizational_unit.name %></span> <%= f.hidden_field :organizational_unit_id %>
+        <div class="clear"></div>
+      </div>
+    <% else %>
+      <%= f.classy_autocomplete :organizational_unit_id, autocomplete_organizational_unit_with_term_designations_path %>
+    <% end %>
+    <%= f.classy_collection_select :kind, DesignationType.designation_types, :name, :name %>
+    <%= f.classy_date_field :from_date %>
+    <%= f.classy_date_field :to_date %>
+    
+  </div>
+<% end %>

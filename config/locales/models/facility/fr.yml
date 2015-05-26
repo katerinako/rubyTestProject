@@ -1,0 +1,15 @@
+fr:
+  activerecord:
+    models:
+      facility:
+        one: Facilité
+        other: Installations
+    attributes:
+      facility:
+        kind: Sorte
+        localized_kind: Sorte
+        name: Nom
+        department: Department
+        type_of_education: Catégorie
+        homepage: "Site web"
+        email: E-mail

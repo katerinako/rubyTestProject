@@ -1,0 +1,13 @@
+fr:
+  addresses:
+    addresses_form:
+      add_address: "Add Address..."
+      remove_address: "Remove address?"
+      private: Privé
+      fax: Ttélécopie
+      mobile: Mobile 
+      other: Autres
+      business: Cabinet
+    
+    equipment_form:
+      equipment: Photo-, Laser-, Radiothérapie

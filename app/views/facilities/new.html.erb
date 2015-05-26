@@ -1,0 +1,6 @@
+<%= content_for :page_intro, "New Facility" %>
+<% content_for :back do %>
+  <%= link_to t(:back), facilities_path %>
+<% end %>
+
+<%= render 'form' %>

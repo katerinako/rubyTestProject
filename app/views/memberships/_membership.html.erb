@@ -1,0 +1,28 @@
+<%= classy_field "Category #{membership.membership_category.name}" do %>
+  <%= link_to_if permitted_to?(:show, membership),
+                 membership.nomination, membership_path(membership) %>
+  <br />
+  <% if permitted_to?(:edit, membership) %>
+    <em>
+       (<%= membership.from_date %> -
+        <% if membership.to_date %> 
+           <%= membership.to_date %>)
+        <% else %>
+          )
+        <% end %>
+    </em> 
+    <br />
+  <% end %>
+   
+  <% Membership::STATUS_LABELS.each do |attr, attr_label| %>
+    <% if membership.send(attr) %>
+      <strong><%= attr_label %></strong>
+      <br />
+    <% end %>
+  <% end %>
+  
+  <% if permitted_to? :manage, membership %>
+    <%= render 'memberships/status', :membership => membership %>
+    <%= link_to "[Details...]", membership %>
+  <% end %>
+<% end %>

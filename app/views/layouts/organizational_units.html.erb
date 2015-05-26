@@ -1,0 +1,12 @@
+
+<% content_for :vertical_nav do %>
+    <ul>
+      <% @top_level.each do |branch| %>
+        <%= render 'branch', :branch => branch, :depth => 1 %>
+      <% end %>
+    </ul>
+<% end %>
+
+<% content_for :back, link_to("Back", @destination) if @destination %>
+
+<%= render :file => 'layouts/application' %>

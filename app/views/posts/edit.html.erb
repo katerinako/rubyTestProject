@@ -1,0 +1,11 @@
+<% content_for :page_intro, if @post.member 
+     t(".edit_post_for", :name => @post.member.name)
+   elsif @post.facility
+     t(".edit_post_at", :name => @post.facility.description)
+   else
+     t(".edit_post")
+   end %>
+   
+<% content_for :back, link_to(t(:back), @destination) %>
+   
+<%= render 'form' %>

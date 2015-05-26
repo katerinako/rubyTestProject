@@ -1,0 +1,12 @@
+<% content_for :page_intro, @membership_category.name %>
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @membership_category, "Edit" %> 
+  <%= link_to_if_permitted :destroy, @membership_category, "Destroy" %> 
+<% end %>
+
+<%= show_fields @membership_category, :name, :kind  %>
+<%= classy_field "Fee (CHF)", @membership_category.fee %>
+<%= classy_field "Fee Period (months)", @membership_category.fee_period %>
+<%= show_fields @membership_category, :description %>
+
+<%= link_to 'Back', membership_categories_path %>

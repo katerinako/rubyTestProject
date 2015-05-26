@@ -1,0 +1,10 @@
+  <% if defined?(facility) and not @search.with_equipment_term.blank? %>
+    <% equipment = facility.equipment_matching_term(@search.with_equipment_term) %>
+
+    <% equipment.each do |eq| %>
+      <p>
+        <span class="eq-name"><%= eq.equipment_type.kind %>: </span>
+        <span class="eq-desc"><%= eq.description %></span>
+      </p>
+    <% end %>
+  <% end %>

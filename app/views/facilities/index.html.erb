@@ -1,0 +1,35 @@
+<% content_for :page_intro, "Praxis & Clinics" %>
+
+<%= button_row do %>
+  <%= link_to_if_permitted :new, :facilities, "New Praxis / Clinic" %>
+<% end %>
+
+<%= form_for @search_facilities, :as => :search_facilities, :url => facilities_path, :html => {:method => :get} do |f| %>
+  <p class="search-box">
+    <%= f.label :with_term, "Search For: " %>
+    <%= f.select :with_kind, kind_filters -%>
+    <%= f.select :with_type_of_education, education_filters -%>
+    <%= f.search_field :with_term  %>
+  </p>
+<% end %>
+
+<table id="facilities-table" class="discussions-archive-table left">
+  <tr>
+    <th>Facility</th>
+    <th>Kind</th>
+    <th>Education Type</th>
+    <th>Action</th>
+  </tr>
+
+<% @facilities.each do |facility| %>
+  <tr>
+    <td><%= link_to facility.description, facility %></td>
+    <td><%= t facility.kind %></td>
+    <td><%= facility.type_of_education -%></td>
+    <td><%= link_to_if_permitted :edit, facility, '[Edit]' %>
+        <%= link_to_if_permitted :destroy, facility, '[Destroy]', :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate @facilities %>

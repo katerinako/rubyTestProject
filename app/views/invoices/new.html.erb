@@ -1,0 +1,3 @@
+<% content_for :page_intro, "New Invoice for #{@membership.full_description}" %>
+<% content_for :back, link_to("Back", membership_path(@membership)) %>
+<%= render 'form' %>

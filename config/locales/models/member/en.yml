@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      member: 
+        one: "Member"
+        other: "Members"
+    attributes:
+      member:
+        email: "E-mail"
+        localized_sex: "Salutation"

@@ -1,0 +1,34 @@
+<fieldset>
+  <% unless defined? hide_heading %>
+    <% if kinds.many? %>
+      <h2><%= Address.model_name.human(:count => :many) %></h2>
+    <% else %>
+      <h2><%= Address.model_name.human %></h2>
+    <% end %>
+  <% end -%>
+  <%= parent_form.fields_for attribute_name do |af| %>
+    <div class="address proto-address">
+      <% if kinds.many? %> 
+        <%= af.classy_select :kind, options_for_kind(kinds) %>
+      <% else %>
+        <%= af.hidden_field :kind, :value => kinds.first %>
+      <% end %>
+      <%= af.classy_text_field :street1 %>
+      <%= af.classy_text_field :street2 %>
+      <%= af.classy_text_field :postal_code %>
+      <%= af.classy_text_field :city %>
+      <%= af.classy_text_field :canton %>
+      <%= af.classy_text_field :country %>
+      <% if kinds.many? %>
+        <%= af.classy_check_box(t(".remove_address"), :_destroy) unless af.object.new_record? %>
+      <% end %>
+      <% if defined?(allow_destroy) %>
+        <%= af.classy_check_box(t(".remove_address"), :_destroy) unless af.object.new_record? %>
+      <% end %>
+
+    </div>
+  <% end %>
+  <% if kinds.many? %>
+    <a id="add-address" href="#"><%= t ".add_address" %></a>
+  <% end %>
+</fieldset>

@@ -1,0 +1,14 @@
+<fieldset>
+  <h2><%= t ".equipment" %></h2>
+  <%= parent_form.fields_for attribute_name do |f| %>
+    <div class="equipment proto-equipment">
+      <%= f.classy_collection_select :equipment_type_id, 
+            EquipmentType.all, :id, :kind %>
+      <%= f.classy_text_area :description %>
+      <%= f.classy_date_field :date_of_purchase %>
+      <%= f.classy_text_field :condition %>
+      <%= f.classy_check_box(t(".remove"), :_destroy) unless f.object.new_record? %>
+    </div>
+  <% end %>
+  <a id="add-equipment" href="#">Add Equipment...</a>
+</fieldset>

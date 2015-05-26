@@ -1,0 +1,27 @@
+<p><%= dear_salutation(@exam_candidate) -%>,</p>
+
+<p>
+  Gerne bestätigen wir den Erhalt Ihrer Anmeldung für das Facharztexamen
+  Dermatologie und Venerologie, das am
+  <strong> <%= l @exam_candidate.exam.date_of_exam, :format => :long %> 
+    in <%= @exam_candidate.exam.location %>
+  </strong>
+  stattfinden wird.
+</p>
+
+<p>
+
+  Die Prüfungskosten belaufen sich auf CHF 1'000.- für Nicht-Mitglieder
+  und auf CHF 800.- für Mitglieder der SGDV. Die Rechnung wird Ihnen
+  <strong>spätestens im <%= l @exam_candidate.exam.feedback_date, :format => '%B' -%></strong> per Post zugestellt.
+</p>
+
+<p>
+  Weitere Informationen zum genauen Prüfungsablauf erhalten Sie anfangs
+  <%= l @exam_candidate.exam.date_of_exam, :format => '%B' %>.
+</p>
+
+<p>
+  Mit freundlichen Grüssen<br />
+  Generalsekretariat SGDV für die Kommission Fachexamen
+</p>

@@ -1,0 +1,15 @@
+de:
+  addressbooks:
+
+    show:
+      no_results: No results match the given criteria.
+    
+    search:
+      personal_example: "Vorname, Nachname"
+      clinic_address: "Klinik / Adresse"
+      address_example: "Klinik, Adresse, Tel."
+      equipment_example: "Photo- Laser-, Radiotherapie"
+      search: Suchen
+      export: Exportieren
+      postal_canton: PLZ / Ort / Kanton
+      postal_example: 1205, Genève, GE

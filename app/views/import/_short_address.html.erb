@@ -1,0 +1,11 @@
+<strong><%= short_address[:kind] %></strong>
+<br />
+<%= short_address[:street1] %>
+<% unless short_address[:street2.blank?] %>
+  <br />
+  <%= short_address[:street2] %>
+<% end %>
+<br />
+<%= short_address[:postal_code] %> <%= short_address[:city] %> <%= short_address[:canton] %> <br />
+<%= short_address[:country] %>
+<br/>

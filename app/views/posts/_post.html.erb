@@ -1,0 +1,37 @@
+<% facility = post.facility %>
+<%= classy_field post.function do  %>
+  <% if not facility.name.blank? %>
+    <%= link_to facility.name, facility %>
+    <br />
+  <% end %>
+  <% if facility.department.present? %>
+    <%= facility.department -%>
+    <br />
+  <% end -%>
+  <% if not facility.business_address.blank? %>
+    <% address = facility.business_address %>
+    
+    <%= link_to address.street1, facility %>
+    <% unless address.street2.blank? %>
+      <br />
+      <%= address.street2 %>
+    <% end %>
+    <br />
+    <%= address.postal_code %> <%= address.city %> <%= address.canton %> <br />
+    <%= address.country %>      
+    <br />
+  <% else %>
+    <%= link_to facility.description, facility %>
+    <br />
+  <% end %>
+  
+  <% if permitted_to? :edit, post %>
+    <%= link_to t(".edit_post"), edit_post_path(post, :coming_from => ActiveModel::Naming.singular(owner)) %>
+  <% end %>
+  
+  <% if permitted_to? :destroy, post %>
+    <%= link_to t(".remove_post"), post_path(post, :back_to => polymorphic_url(owner)), 
+                :confirm => t(:confirmation), :method => :delete  %>
+  <% end %>
+  
+<%  end %>

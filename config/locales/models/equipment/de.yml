@@ -1,0 +1,11 @@
+de:
+  activerecord:
+    models:
+      equipment: Equipment
+    attributes:
+      equipment:
+        equipment_type_id: Art
+        equipment_type: Art
+        description: Beschreibung
+        date_of_purchase: Alter
+        condition: Zustand

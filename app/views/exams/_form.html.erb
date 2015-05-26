@@ -1,0 +1,27 @@
+<%= form_for(@exam) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+
+  <% if @exam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
+
+      <ul>
+      <% @exam.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <%= f.classy_text_field :name %>
+    <%= f.classy_date_field :date_of_exam %>
+    <%= f.classy_time_select :start_time %>
+    <%= f.classy_time_select :end_time %>
+    <%= f.classy_date_field :application_deadline %>
+    <%= f.classy_text_field :location %>
+    <%= f.classy_text_area :description %>
+
+    <div class="clear"></div>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<% puts "BREAD: #{@breadcrumbs}" %>
+<% if @breadcrumbs and @breadcrumbs.size > 1 %>
+  <div id="breadcrumb" role="navigation">
+    <ol>
+      <% @breadcrumbs[0...-1].each do |crumb| %>
+        <li><%= link_to_if crumb[1], crumb[0].truncate(50), crumb[1] %></li>
+      <% end %>
+      <li><%= @breadcrumbs[-1][0].truncate(50) %></li>
+    </ol>
+  </div>
+  <div class="clear"></div>
+<% end %>

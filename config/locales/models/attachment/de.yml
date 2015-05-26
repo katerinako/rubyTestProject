@@ -1,0 +1,18 @@
+de:
+  activerecord:
+    models:
+      attachment:
+        one: Dokument
+        many: Dokumente
+
+    attributes:
+      attachment:
+        name: Name
+        comment: Kommentar
+
+    errors:
+      models:
+        attachment:
+          attributes:
+            data:
+              exceeds_file_size: "file is too big (maximum file size = 20MB)"

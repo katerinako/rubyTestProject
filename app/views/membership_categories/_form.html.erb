@@ -1,0 +1,23 @@
+<%= form_for(@membership_category) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+
+  <% if @membership_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@membership_category.errors.count, "error") %> prohibited this membership_category from being saved:</h2>
+
+      <ul>
+      <% @membership_category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <%= f.classy_text_field :name %>
+    <%= f.classy_select :kind, MembershipCategory::KINDS %>
+    <%= f.classy_text_field "Fee (CHF)", :fee %>
+    <%= f.classy_text_field "Fee Period (months)", :fee_period %>
+    <%= f.classy_text_area :description %>
+  </div>
+<% end %>

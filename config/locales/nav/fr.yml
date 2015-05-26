@@ -1,0 +1,20 @@
+fr:
+  nav:
+    home: "Home"
+    addressbook: "Liste d’adresses"
+    members: "Membres"
+    praxis_clinic: "Cabinet / Clinique"
+    sgdv_structure: "Fonction SSDV"
+    exams: "Examen"
+    exam_application: "Inscription Examen de spécialiste en Dermatologie et Vénéréologie"
+    membership_application_main: "Demande d’adhésion"
+    membership_application: "Demande d’adhésion"
+    membership_application_form: "Demande d’adhésion"
+    administrative: "Administration"
+    en: "En"
+    de: "De"
+    fr: "Fr"
+    logout: "Logout"
+    login: "Log In"
+    my_profile: "Données personnelles"
+

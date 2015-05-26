@@ -1,0 +1,3 @@
+class Internship < WorkExperience
+
+end

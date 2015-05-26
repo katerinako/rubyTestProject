@@ -1,0 +1,11 @@
+de:
+  activerecord:
+    models:
+      post:
+    attributes:
+      post:
+        member: Mitglied
+        member_id: Mitglied
+        facility: Bestehende Praxen und Kliniken
+        facility_id: Bestehende Praxen und Kliniken
+        function: Funktion

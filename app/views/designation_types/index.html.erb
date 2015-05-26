@@ -1,0 +1,32 @@
+<%= content_for :page_intro, "Designation Types / Functions" %>
+
+<div id="types-tabs">
+  <ul>
+    <li><a href="#designation-types">DesignationTypes</a></li>
+    <li><a href="#functions">Functions</a></li>
+    <li><a href="#functions-praxis">Functions (Praxis)</a></li>
+    <li><a href="#membership-nominations">Membership Nominations</a></li>
+  </ul>
+  <div id="designation-types" class="eq-types">
+    <%= render :partial => 'designation_types', 
+               :object => @designation_types, 
+               :locals => { :template_object => @new_designation_type, :template_title => "Add Designation Type" }  %>
+  </div>
+
+  <div id="functions" class="eq-types">
+    <%= render :partial => 'designation_types', 
+               :object => @functions, 
+               :locals => { :template_object => @new_function, :template_title => "Add Function" }  %>
+  </div>
+  <div id="functions-praxis" class="eq-types">
+    <%= render :partial => 'designation_types', 
+               :object => @praxis_functions, 
+               :locals => { :template_object => @new_praxis_function, :template_title => "Add Function (Praxis)" }  %>
+  </div>
+  <div id="membership-nominations" class="eq-types">
+    <%= render :partial => 'designation_types', 
+               :object => @membership_nominations, 
+               :locals => { :template_object => @new_membership_nomination, 
+                            :template_title => "Add Membership Nomination" }  %>
+  </div>
+</div>

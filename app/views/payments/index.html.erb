@@ -1,0 +1,30 @@
+<% content_for :page_intro, "Payments Overview (admin)" %>
+
+<%= form_for @search, :url => payments_path, :html => {:method => :get} do |f| %>
+  <p class="search-box payments">
+    <%= label_tag :with_personal, "Search For: "  %>
+    <%= f.select :with_kind, %w(all SGDV Dermarena) %>
+    <%= f.select :with_status, PaymentsController::FILTERS.map { |k, v| [v, k] } %>
+    <%= f.search_field :with_personal %>
+  </p>
+<% end %>
+
+<table id="facilities-table" class="discussions-archive-table left">
+  <tr>
+    <th>Member</th>
+    <th>Membership</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+
+<% @memberships.each do |membership| %>
+  <tr>
+    <td><%= membership.member.name %></td>
+    <td><%= membership.description %></td>
+    <td><%= render "memberships/status", :membership => membership %></td>
+    <td><%= link_to_if_permitted :show, membership, "[Details]" %>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate @memberships %>

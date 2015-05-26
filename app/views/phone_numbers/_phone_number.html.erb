@@ -1,0 +1,5 @@
+<%= parent_form.fields_for attribute_name do |pnf| %>
+  <div class="phone proto-phone">
+    <%= pnf.classy_text_field pnf.select(:kind, PhoneNumber::KINDS), :number %>
+  </div>
+<% end %>

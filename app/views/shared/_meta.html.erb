@@ -1,0 +1,22 @@
+  <ul id="language">
+    <li><%= link_to_locale(:fr) %></li>
+    <% if @hide_english_locale -%>
+      <li><%= link_to_locale(:de, :class => "no-border") %></li>
+    <% else %>
+      <li><%= link_to_locale(:de) %></li>
+      <li><%= link_to_locale(:en, :class => "no-border") %></li>
+    <% end -%>
+  </ul>
+  <div id="nav-meta">
+
+    <ul>
+        <li>
+          <% if member_signed_in? %>
+            <%= link_to current_member.name, current_member %> | 
+            <%= link_to t("nav.logout"), destroy_member_session_path %>
+          <% else %>  
+            <%= link_to t("nav.login"), new_member_session_path %>
+          <% end  -%>            
+        </li>
+    </ul>
+  </div>

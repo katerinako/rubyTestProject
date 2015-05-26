@@ -1,0 +1,14 @@
+<%= content_for :page_intro, "Resend Confirmation Instructions" %>
+
+<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-wrapper">
+    <%= f.classy_text_field :email %>
+    <%= f.classy_submit "Resend confirmation instructions" %>
+  </div>
+
+  <p>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

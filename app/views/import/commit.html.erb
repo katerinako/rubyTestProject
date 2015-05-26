@@ -1,0 +1,32 @@
+<% full_screen %>
+
+<h1>Import Members: Results</h1>
+
+  <table id="import-list" class="discussions-archive-table">
+    <colgroup>
+      <col class="result" />
+      <col class="validation" />
+      <col class="id" />
+      <col class="name" />
+    </colgroup>
+    
+    <thead>
+      <th>Result</th>
+      <th>Validation Messages</th>
+      <th>Member ID</th>
+      <th>Member Name</th>
+
+    </thead>
+    <tbody>
+      <% @import.results.each do |result| %>
+        <tr>
+          <td class="result"><%= result.outcome %></td>
+          <td class="validation"><%= errors_for_member(result.associated_member) %> </td>
+          <td class="id"><%= result.associated_member.id if result.associated_member %></td>
+          <td class="name"><%= result.description %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+

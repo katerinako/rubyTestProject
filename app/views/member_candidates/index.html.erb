@@ -1,0 +1,28 @@
+<% content_for :page_intro, t("nav.membership_application") %>
+
+<%= form_for @search, :url => member_candidates_path, :html => {:method => :get} do |f| %>
+  <p class="search-box">
+    <%= f.label :with_term, t(".search_for") %>
+    <%= f.select :with_status, MemberCandidatesController::ACCEPTANCE_FILTERS %>
+    <%= f.search_field :with_term  %>
+  </p>
+<% end %>
+
+<table id="member-candidates-table" class="discussions-archive-table left">
+  <tr>
+    <th>Applicant</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+
+<% @member_candidates.each do |member_candidate| %>
+  <tr>
+    <td><%= link_to member_candidate.name, member_candidate %></td>
+    <td><%= MemberCandidatesController::ACCEPTANCE_STATUSES[member_candidate.acceptance_status] %></td>
+    <td><%= link_to_if_permitted :edit, member_candidate, "[#{t 'views.actions.edit'}]" %>
+        <%= link_to_if_permitted :destroy, member_candidate, "[#{t 'views.actions.destroy'}]", :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate @member_candidates %>

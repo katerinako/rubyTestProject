@@ -1,0 +1,29 @@
+    <fieldset>
+      <% if not defined? fixed_kind %>
+        <%= f.classy_select :kind, options_for_facility_kinds %>
+      <% else %>
+        <%= f.hidden_field :kind %> 
+      <% end %>
+      <%= f.classy_text_field :name %>
+      <%= f.classy_text_field :department %>
+      <%= f.classy_email_field :email %>
+      <%= f.classy_text_field :homepage %>
+      <% if permitted_to? :edit_category, f.object %>
+        <%= f.classy_small_select :type_of_education, Facility::EDUCATION_TYPES %>
+      <% elsif f.object.type_of_education %>
+        <div>
+          <label><%= Facility.human_attribute_name("type_of_education") %></label>
+          <span><%= f.object.type_of_education %></span>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+    </fieldset>
+
+    <%= phone_numbers_form f, :phone_numbers, PhoneNumber::KINDS_FOR_FACILITY %>
+    
+    <%= addresses_form f, :addresses, Address::KINDS_FOR_FACILITY %>
+    
+    <%= render :partial => 'facilities/equipment_form',
+               :locals => {:parent_form => f, :attribute_name => :equipment}  %>
+    
+

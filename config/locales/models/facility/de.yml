@@ -1,0 +1,16 @@
+de:
+  activerecord:
+    models:
+      facility:
+        one: Einrichtung
+        other: Anlageni
+    attributes:
+      facility:
+        kind: Art
+        localized_kind: Art
+        name: Name
+        department: Department
+        type_of_education: Kategorie
+        email: E-mail
+        homepage: "Webseite"
+

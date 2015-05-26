@@ -1,0 +1,4 @@
+<% content_for :page_intro, "Editing Results for #{@exam_candidate.name}" %>
+<% content_for :back, link_to("Back", exam_candidate_result_path(@exam_candidate)) %>
+<%= render 'form' %>
+

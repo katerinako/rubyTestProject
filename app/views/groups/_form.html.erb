@@ -1,0 +1,26 @@
+<%= form_for(@group) do |f| %>
+  <%= f.classy_submit nil, content_for(:back) %>
+  
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-wrapper">
+    <%= f.classy_text_field :name %>
+    <%= f.classy_text_field :code %>
+    <%= f.classy_text_field :description %>
+    
+  </div>
+
+  <div class="clear"></div>
+  
+<% end %>

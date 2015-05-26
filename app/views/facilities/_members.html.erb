@@ -1,0 +1,13 @@
+<table id="members" class="discussions-archive-table left">
+  <tr>
+    <th>Name</th>
+    <th>E-mail</th>
+  </tr>
+
+<% members[0...25].each_with_index do |member, i| %>
+  <tr>
+    <td><%= link_to member.name, member %></td>
+    <td><%= member.email %></td>
+  </tr>
+<% end %>
+</table>

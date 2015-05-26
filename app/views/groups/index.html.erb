@@ -1,0 +1,25 @@
+<% content_for :page_intro, "Access Role Configuration" %>
+<%= button_row do %>
+  <%= link_to_if_permitted :new, :groups, "New Access Role" %>
+<% end %>
+<table id="groups" class="discussions-archive-table left">
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Description</th>
+    <th>Action</th>
+  </tr>
+
+<% @groups.each do |group| %>
+  <tr>
+    <td><%= link_to group.name, group %></td>
+    <td><%= group.code %></td>
+    <td><%= group.description %></td>
+    <td><%= link_to_if_permitted :edit, group, '[Edit]'%> 
+        <%= link_to_if_permitted :destroy, group, '[Destroy]', 
+                                 :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

@@ -1,0 +1,81 @@
+<% content_for :page_intro, 
+  "#{@membership.member.name}: #{@membership.description}" %>
+
+<%= button_row do %>
+  <%= link_to_if_permitted :edit, @membership, "Edit" %>
+  <%= link_to_if_permitted :destroy, @membership, "Destroy" %>
+<% end %>
+  
+<%= classy_field "Member", link_to("#{@membership.member.name} (#{@membership.member.email})", @membership.member) %>
+<%= classy_field "Category", "#{@membership.membership_category.name}   
+                (#{@membership.membership_category.kind})" %>
+                
+<%= show_fields @membership, :nomination  %>
+<%= classy_field "Membership Period" do %>
+  <%= @membership.from_date %> -
+   <% if @membership.to_date %> 
+      <%= @membership.to_date %>
+   <% else %>
+
+   <% end %>
+<% end %>
+
+<h2>Status</h2>
+<%= render 'status', :membership => @membership %>
+
+<h2>Invoices</h2>
+
+<%= button_row do %>
+  <% if permitted_to?(:create, :invoices) %>
+    <%= link_to "New Invoice", new_membership_invoice_path(@membership) %>
+  <% end %>
+<% end %>
+
+
+<table id="invoices" class="discussions-archive-table left">
+  <tr>
+    <th>Period From</th>
+    <th>Period To</th>
+    <th>Amount (CHF)</th>
+    <th>Status</th>
+    <th><em>Action</em></th>
+  </tr>
+  
+  <% @membership.invoices.each do |invoice| %>
+    <tr <%= invoice.invoice_paid? ? '' : 'class="not-paid"'.html_safe %>>
+        <td><%= invoice.period_from_date %></td>
+        <td><%= invoice.period_to_date %></td>
+        <td><%= invoice.fee_amount %></td>
+        <td><%= if invoice.invoice_paid? 
+                  "Paid" 
+                elsif invoice.invoice_sent? 
+                  "Invoice Sent, Payment Pending" 
+                else 
+                  "Invoice Not sent" 
+                end %>
+        </td>
+        <td>
+          <% if invoice.invoice_sent? and not invoice.invoice_paid? and permitted_to?(:mark_paid, invoice) %>
+            <%= link_to "[Mark As Paid]", 
+                mark_paid_membership_invoice_path(@membership, invoice), 
+                :method => :post, :confirm => 'Are you sure?' %>
+                
+          <% elsif not invoice.invoice_sent? and permitted_to?(:mark_sent, invoice) %>
+            <%= link_to "[Mark As Sent]",
+                mark_sent_membership_invoice_path(@membership, invoice),
+                :method => :post, :confirm => 'Are you sure?' %>
+                
+          <% end %>
+          <% if permitted_to? :edit, invoice %>
+            <%=  link_to "[Edit]", edit_membership_invoice_path(@membership, invoice) %>
+          <% end %>
+          <% if permitted_to? :destroy, invoice %>
+            <%= link_to "[Destroy]", [@membership, invoice],
+                        :method => :delete, :confirm => 'Are you sure?' %>
+          <% end %>
+          
+        </td>
+    </tr>
+  <% end %>
+</table>
+

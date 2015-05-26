@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p><%= dear_salutation(@member_candidate) -%>,</p>
+    <p>
+    C’est avec plaisir que nous pouvons vous confirmer que votre adhésion a été confirmée par le comité de la SSDV. 
+    </p>
+    <p>
+      Votre statut de membre:
+      <%= MemberCandidatesController::ACCEPTANCE_STATUSES[@member_candidate.acceptance_status] %>
+    </p>
+
+    <p>
+      Les statuts de la SSDV se trouvent sur notre nouveau site : www.derma.ch. 
+      Vous y trouverez aussi une partie sécurisée qui est réservée à nos membres et qui est à votre 
+      disposition dès maintenant. 
+      <%= link_to "Pour y accéder vueillez cliquer sur le lien suivant.", 
+          edit_password_url(@member, :reset_password_token => @member.reset_password_token,
+                                     :locale => :fr) %>
+      Le mot de passe peut être adapter individuellement. 
+
+
+    <p>Votre nom d’utilisateur et votre adresse e-mail: <%= @member.username %>.</p>
+
+  <p>Nous vous souhaitons la bienvenue dans notre société!</p>
+  <p>Avec nos salutations les meilleures<br/>
+    Secrétariat général SSDV</p>
+  </body>
+</html>

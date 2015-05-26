@@ -1,0 +1,108 @@
+<div id="nav-global" role="navigation">
+  <ul>
+    <li>
+        <%= link_to content_tag(:span, t("nav.home")), "/" %>
+    </li>
+
+    <% if permitted_to?(:see, :addressbooks) %>
+      <li>
+        <%= link_to content_tag(:span, t("nav.addressbook")), addressbook_path %>
+      </li>
+    <% end %>
+
+    <% if permitted_to? :manage, :members %>
+      <li>
+          <%= link_to content_tag(:span, t("nav.members")), members_path %>
+          <ul>
+            <li>
+                <%= link_to content_tag(:span, t("nav.praxis_clinic")), facilities_path %>
+            </li>
+            <li>
+              <%= link_to content_tag(:span, t("nav.members")), members_path %>
+            </li>
+            <li>
+                <%= link_to content_tag(:span, t("nav.sgdv_structure")), organizational_units_path %>
+            </li>
+            <li>
+                <%= link_to content_tag(:span, t("nav.members.import")), 
+                  new_import_path %>
+
+            </li>
+          </ul>
+      </li>
+    <% end %>
+      <% if permitted_to? :index, :exams %>
+        <li>
+            <%= link_to content_tag(:span, t("nav.exams")), exams_path %>
+            <ul>
+                <li>
+                    <%= link_to content_tag(:span, t("nav.exam_application")), new_exam_candidate_path %>
+                </li>
+            </ul>
+        </li>
+      <% end %>
+
+    <% if permitted_to?(:index, :member_candidates) %>
+      <li>
+        <%= link_to content_tag(:span, t("nav.membership_application_main")), member_candidates_path %>
+        <ul>
+          <% if permitted_to? :index, :member_candidates %>
+            <li>
+              <%= link_to content_tag(:span, t("nav.membership_application")), member_candidates_path %>
+            </li>
+          <% end %>
+          <% if permitted_to? :create, :member_candidate %>
+            <li>
+              <%= link_to content_tag(:span, t("nav.membership_application_form")), new_member_candidate_path %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+
+      <% if permitted_to?(:manage, :membership_categories) or
+            permitted_to?(:index, :equipment_types) or
+            permitted_to?(:index, :designation_types) or
+            permitted_to?(:index, :groups) or
+            permitted_to?(:index, :payments) %>
+        <li>
+           <a href="#" onclick="return false"><span><%= t "nav.administrative" %></span></a>
+           <ul>
+             <% if permitted_to? :manage, :membership_categories %>
+               <li>
+                 <%= link_to content_tag(:span, t("nav.membership_categories")), membership_categories_path %>
+               </li>
+             <% end %>
+             <% if permitted_to? :index, :equipment_types %>
+               <li>
+                   <%= link_to content_tag(:span, t("nav.equipment_type_definitions")), equipment_types_path %>
+               </li>
+             <% end %>
+             <% if permitted_to? :index, :designation_types %>
+               <li>
+                   <%= link_to content_tag(:span, t("nav.designation_types")), designation_types_path %>
+               </li>
+             <% end %>
+             <% if permitted_to? :index, :groups %>
+               <li>
+                   <%= link_to content_tag(:span, t("nav.access_roles")), groups_path %>
+               </li>
+             <% end %>
+             <% if permitted_to? :index, :payments %>
+               <li>
+                  <%= link_to content_tag(:span, t("nav.payments")), payments_path %>
+               </li>
+             <% end %>
+           </ul>
+        </li>
+      <% end %>
+
+    <% if member_signed_in? %>
+      <li>
+          <%= link_to_if_permitted :show, current_member, content_tag(:span, t("nav.my_profile")) %>
+      </li>
+    <% end -%>
+
+  </ul>
+</div>
+

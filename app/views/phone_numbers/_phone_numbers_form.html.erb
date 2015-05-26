@@ -1,0 +1,10 @@
+<fieldset>
+  <h2><%= t :telephone_numbers %></h2>
+  <%= parent_form.fields_for attribute_name do |pnf| %>
+    <div class="phone proto-phone">
+      <%= pnf.classy_text_field pnf.select(:kind, options_for_kind(kinds)), :number %>
+      <%= pnf.classy_check_box(t(".remove"), :_destroy) unless pnf.object.new_record? %>
+    </div>
+  <% end %>
+  <a id="add-phone" href="#"><%= t ".add_phone_number" %></a>
+</fieldset>

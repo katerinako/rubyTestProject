@@ -1,0 +1,7 @@
+<%= classy_field attachment_label do %>
+  <% if attachment %>
+    <%= link_to attachment.uploaded_file.name, attachment.uploaded_file.url %>
+  <% else %>
+    <em>No <%= attachment_label %> has been uploaded</em>
+  <% end %>
+<% end %>

@@ -1,0 +1,10 @@
+en:
+  phone_numbers:
+    phone_numbers_form:
+      add_phone_number: "Add Phone Number ..."
+      private: "Private"
+      fax: "Fax"
+      mobile: "Mobile"
+      other: "Other"
+      remove: "Remove this number?"
+      

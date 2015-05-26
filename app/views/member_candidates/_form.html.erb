@@ -1,0 +1,99 @@
+<%= form_for(@member_candidate, :html => {:multipart => true}) do |f| %>
+  <% if @member_candidate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member_candidate.errors.count, "error") %> prohibited this member_candidate from being saved:</h2>
+
+      <ul>
+      <% @member_candidate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-wrapper">
+    <fieldset>
+      <h2><%= t ".personal_information" %></h2>
+      <%= f.classy_select :gender, options_for_gender %>
+      <%= f.classy_text_field :title %>
+      <%= f.classy_text_field :first_name %>
+      <%= f.classy_text_field :last_name %>
+      <%= f.classy_email_field :email_address %>
+      <%= f.classy_email_field :email_address_confirmation %>
+
+      <%= render "addresses/addresses_form",
+               :parent_form => f, :attribute_name => :address, :kinds => [:private], :hide_heading => true %>
+
+      <%= f.fields_for :phone_number do |pnf| %>
+      <div class="phone proto-phone">
+        <%= pnf.hidden_field :kind, :value => "private" %>
+        <%= pnf.classy_text_field t(".phone_number"), :number %>
+      </div>
+      <% end %>
+
+      <%= f.classy_date_field :date_of_birth %>
+      <%= f.classy_text_field :place_of_birth %>
+      <%= f.classy_select :language, Candidate::LANGUAGES %>
+    </fieldset>
+
+    <fieldset>
+      <h2><%= t ".short_cv" %></h2>
+      <%= html_text ".please_enter_your_cv_html" %>
+
+      <%= f.hinted_text_field :university, t(".university_city") %>
+      <%= f.classy_year_select :date_of_medical_exam %>
+      <%= f.hinted_text_area :disertation, t(".mentor") %>
+
+      <%= f.classy_year_select :date_of_dermatology_diploma %>
+      <h3><%= t ".workplaces" %></h3>
+
+      <%= f.hinted_text_area :research_scollarships, t(".times_and_places") %>
+
+      <h3><%= t ".recommendations" %></h3>
+      <%= f.hinted_text_area :first_recommender, "Name and address of first SGDV Member recomending you for a membership in SGDV" %>
+
+      <%= f.hinted_text_area :second_recommender, "Name and address of second SGDV Member recomending you for a membership in SGDV" %>
+
+      <p>&nbsp;</p>
+      <%= f.hinted_check_box :agrees_to_publish_cv, t(".publish_info") %>
+
+    </fieldset>
+    <fieldset>
+      <h2><%= t ".required_documents" %></h2>
+      <h3><%= html_text ".upload_documents_html" %></h3>
+      <%= f.fields_for :cv do |cvf| %>
+
+        <%= cvf.classy_attachment_upload t(".cv") %>
+      <% end %>
+
+      <%= f.fields_for :photo do |photof| %>
+        <%= photof.classy_attachment_upload t(".photo") %>
+      <% end -%>
+
+      <h3><%= html_text ".recommendations_html" %></h3>
+      <% @member_candidate.recommendation_letters.each_with_index do |letter, index| %>
+        <%= f.fields_for :recommendation_letters, letter do |lf| %>
+          <%= lf.classy_attachment_upload t(".recommendation_letter", :index => index + 1) %>
+        <% end %>
+      <% end %>
+
+      <h3><%= html_text ".certificates_html" %></h3>
+      <%= html_text ".certificates_description_html" %>
+
+      <% @member_candidate.certifications.each_with_index do |cert, index| %>
+        <%= f.fields_for :certifications, cert do |cf| %>
+          <%= cf.classy_attachment_upload case index
+                                          when 0
+                                            t(".state_exam")
+                                          when 1
+                                            t(".specialization")  
+              
+                                          end %>
+        <% end %>
+      <% end %>
+
+    </fieldset>
+  </div>
+
+  <%= f.classy_submit nil, content_for(:back) %>
+<% end %>

@@ -1,0 +1,12 @@
+fr:
+  activerecord:
+    models:
+      equipment: Equipment
+    attributes:
+      equipment:
+        equipment_type_id: Sorte
+        equipment_type: Sorte
+        description: Description
+        date_of_purchase: Âge
+        condition: Condition
+
